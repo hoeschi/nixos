@@ -15,6 +15,7 @@
   modules = {
     browser.firefox.enable = true;
     desktop.kdeplasma.enable = true;
+    development.vscode.enable = true;
   };
 
 }

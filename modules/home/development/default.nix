@@ -1,9 +1,7 @@
 { ... }:
 {
   imports = [
-    ./browser
-    ./desktop
-    ./development
+    ./vscode.nix
     # weitere Module hinzufügen
   ];
 }
