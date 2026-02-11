@@ -1,9 +1,13 @@
 {config, inputs, pkgs, ...}:
 
 {
+
   imports = [
     ../../modules/home
   ];
+
+  programs.home-manager.enable = true;
+
   home = {
     username = "bhoesch";
     homeDirectory = "/home/bhoesch";

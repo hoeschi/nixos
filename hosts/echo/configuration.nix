@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.default
     ];
 
    # NixOS Settings with Home Manager
@@ -104,6 +105,8 @@
       kdePackages.kate
     ];
   };
+
+  #programs.home-manager.enable = true;
 
   home-manager = {
     useGlobalPkgs = true;
