@@ -102,20 +102,21 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
     ];
   };
 
   home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
     users = {
       bhoesch = import ./home.nix;
-    }
-  }
+    };
+  };
 
   # Install System packages.
   programs = {
-    firefox.enable = true;
+    #firefox.enable = true;
     git.enable = true;
     #github-desktop.enable = true;
   };
