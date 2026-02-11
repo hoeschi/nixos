@@ -106,12 +106,19 @@
     ];
   };
 
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      bhoesch = import ./home.nix;
+    }
+  }
+
   # Install System packages.
   programs = {
     firefox.enable = true;
     git.enable = true;
     #github-desktop.enable = true;
-};
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
