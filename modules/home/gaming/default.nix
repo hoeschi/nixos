@@ -1,10 +1,7 @@
 { ... }:
 {
   imports = [
-    ./browser
-    ./desktop
-    ./development
-    ./gaming
+    ./steam.nix
     # weitere Module hinzufügen
   ];
 }
