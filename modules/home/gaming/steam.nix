@@ -5,9 +5,9 @@
   };
   config = lib.mkIf config.modules.gaming.steam.enable {
     
-    programs.steam = {
-      enable = true;
-    };
+    home.packages = with pkgs; [
+      steam
+    ];
 
     # Proton für Windows-Spiele
     protontricksSupport = true;
