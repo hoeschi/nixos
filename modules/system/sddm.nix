@@ -2,7 +2,13 @@
 {
   services = {
     
-    xserver.enable = true;
+    xserver = {
+      enable = true;
+      xkb = {
+          layout = "de";
+          variant = "";
+        };
+    };
 
     displayManager = {
 
@@ -11,6 +17,7 @@
         enable = true;
 
         autoNumlock = true;
+        package = pkgs.kdePackages.sddm;
         theme = "sddm-astronaut-theme";
       };
     };
