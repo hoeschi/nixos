@@ -20,12 +20,15 @@
 
   # Bootloader.
   boot.loader = {
+
     systemd-boot.enable = false;
     efi.canTouchEfiVariables = true;
+
     grub = {
       enable = true;
       efiSupport = true;
       device = "nodev";
+
       useOSProber = true;
     };
   };
@@ -96,8 +99,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bhoesch = {
