@@ -17,8 +17,8 @@
         enable = true;
 
         autoNumlock = true;
-        package = pkgs.kdePackages.sddm;
-        theme = "sddm-astronaut-theme";
+        #package = pkgs.kdePackages.sddm;
+        #theme = "sddm-astronaut-theme";
       };
     };
   };
