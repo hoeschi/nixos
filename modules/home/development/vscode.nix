@@ -8,17 +8,15 @@
     programs.vscode = {
       
       enable = true;
-
-      name = "default";
       extensions = with pkgs.vscode-extensions; [
         ms-python.python
         #ms-toolsai.jupyter
         #ms-vscode.cpptools
         #ms-vscode.cmake-tools
-      #ms-vscode.cpptools-extension-pack
-      #ms-vscode.cpptools-themes
-      #ms-vscode.cmake-tools-extension-pack
-      #ms-vscode.cmake-tools-themes
+        #ms-vscode.cpptools-extension-pack
+        #ms-vscode.cpptools-themes
+        #ms-vscode.cmake-tools-extension-pack
+        #ms-vscode.cmake-tools-themes
       ];
       userSettings = {
         "editor.fontSize" = 14;
