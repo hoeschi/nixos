@@ -11,6 +11,7 @@
       inputs.home-manager.nixosModules.default
 
       ./../../modules/system/sddm.nix
+      ./../../modules/system/games.nix
     ];
 
    # NixOS Settings with Home Manager
@@ -117,6 +118,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
+
     ];
   };
 
@@ -156,6 +158,8 @@
     git
     _1password-gui
     discord
+
+    kdePackages.plasma-browser-integration
   ];
 
 
