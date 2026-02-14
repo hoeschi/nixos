@@ -3,11 +3,26 @@
 {
 
 options = {
-    modules.desktop.proton.enable = lib.mkEnableOption "Proton setup";
+    modules.desktop.thunderbird.enable = lib.mkEnableOption "Thunderbird setup";
   };
 
-  config = lib.mkIf config.modules.desktop.proton.enable {
+  config = lib.mkIf config.modules.desktop.thunderbird.enable {
 
-    
+    services.protonmail-bridge.enable = true;
 
+    programs.thunderbird = {
+      
+      enable = true;
+
+      profiles = {
+        "default" = {
+          isDefault = true;
+          settings = {
+
+          };
+        };
+      };
+    };
+
+  };
 }
