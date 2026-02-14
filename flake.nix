@@ -22,6 +22,15 @@
             ./hosts/echo/configuration.nix
         ];
       };
+
+      # Main-Desktop
+      gaia = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+            ./hosts/gaia/configuration.nix
+        ];
+      };
+
     };
 
   };

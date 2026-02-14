@@ -34,7 +34,7 @@
   };
 
 
-  networking.hostName = "echo"; # Define your hostname.
+  networking.hostName = "gaia"; # Define your hostname.
   
   # Enable networking
   networking.networkmanager.enable = true;
