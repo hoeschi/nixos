@@ -38,6 +38,8 @@
   
   # Enable networking
   networking.networkmanager.enable = true;
+  # enable systemd DNS resolver
+  services.resolved.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # ------------------------------ #
