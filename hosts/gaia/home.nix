@@ -27,8 +27,12 @@
   #enable Modules
   modules = {
     browser.firefox.enable = true;
+
     desktop.kdeplasma.enable = true;
+    desktop.thunderbird.enable = true;
+
     development.vscode.enable = true;
+    
     gaming.steam.enable = true;
   };
 
