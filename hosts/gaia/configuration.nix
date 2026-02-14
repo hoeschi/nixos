@@ -141,6 +141,8 @@
   # Install System packages.
   programs = {
 
+    gamescope.enable = true;
+    gamemode.enable = true;
 
   };
 
@@ -151,15 +153,27 @@
   environment.systemPackages = with pkgs; [
 
     neovim
+
     github-desktop
     git
+
     _1password-gui
     (discord.override {
         withOpenASAR = true;
         withVencord = true;
     })
 
+    (heroic.override {
+      extraPkgs = pkgs': with pkgs'; [
+        gamescope
+        gamemode
+      ];
+    })
+
+    streamdeck-ui
+
     kdePackages.plasma-browser-integration
+    kdePackages.kwallet
   ];
 
 
