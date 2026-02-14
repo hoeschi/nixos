@@ -139,6 +139,8 @@
     neovim
     github-desktop
     git
+    _1password-gui
+    discord
   ];
 
 
