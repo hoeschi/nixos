@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./steam.nix
+    ./launcher.nix
     # weitere Module hinzufügen
   ];
 }
