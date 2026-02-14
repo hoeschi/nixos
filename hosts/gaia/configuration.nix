@@ -170,7 +170,7 @@
       ];
     })
 
-    streamdeck-ui
+    #streamdeck-ui
 
     kdePackages.plasma-browser-integration
     kdePackages.kwallet
