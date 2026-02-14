@@ -140,24 +140,24 @@
 
   # Install System packages.
   programs = {
-    #firefox.enable = true;
-    #git.enable = true;
-    #github-desktop.enable = true;
+
+
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+
     neovim
     github-desktop
     git
     _1password-gui
-    discord
+    (discord.override {
+        withOpenASAR = true;
+        withVencord = true;
+    })
 
     kdePackages.plasma-browser-integration
   ];
