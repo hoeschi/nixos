@@ -24,14 +24,14 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/home/bhoesch/Games" =
+    { device = "/dev/disk/by-uuid/49df895b-1622-4011-a02e-3e4c59fa53eb";
+      fsType = "ext4";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/766a381f-0aae-4880-9eb3-411986f80e97"; }
     ];
-
-  fileSystems."/home/bhoesch/Games" =
-    { device = "/dev/disk/by-uuid/586beb72-4712-4079-92b7-39cf99f4c6db";
-      fsType = "ext4";
-    };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
