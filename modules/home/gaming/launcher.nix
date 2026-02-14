@@ -2,25 +2,20 @@
 {
   options = {
 
-    modules.gaming.steam.enable = lib.mkEnableOption "Steam setup";
-    modules.gaming.heroic.enable = lib.mkEnableOption "Heroic setup";
+    modules.gaming.enable = lib.mkEnableOption "Gaming setup";
     
   };
     
 
-  config = lib.mkIf config.modules.gaming.steam.enable {
+  config = lib.mkIf config.modules.gaming.enable {
     
     home.packages = with pkgs; [
       steam
     ];
 
+    programs.prismlauncher.enable = true;
+
   };
-
-  #config = lib.mkIf config.modules.gaming.heroic.enable {
-
-
-
-  #};
 
 
 }

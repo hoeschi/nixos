@@ -33,7 +33,7 @@
 
     development.vscode.enable = true;
     
-    gaming.steam.enable = true;
+    gaming.enable = true;
   };
 
 }
