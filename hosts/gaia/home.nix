@@ -15,6 +15,15 @@
     stateVersion = "25.11";
   };
 
+  nixpkgs = {
+    overlays = [
+      inputs.nur.overlays.default
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
+
   #enable Modules
   modules = {
     browser.firefox.enable = true;

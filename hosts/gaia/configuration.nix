@@ -113,8 +113,11 @@
   #programs.home-manager.enable = true;
 
   home-manager = {
-    useGlobalPkgs = true;
+
+    # Fix use of unfree packages
+    #useGlobalPkgs = true;
     useUserPackages = true;
+
     extraSpecialArgs = { inherit inputs; };
     users = {
       bhoesch = import ./home.nix;
