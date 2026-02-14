@@ -78,7 +78,15 @@
   # Configure console keymap
   console.keyMap = "de";
 
-  # ------------------------------ #
+  # ------------------------------ # Hardware und Treiber
+
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+  };
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -123,6 +131,8 @@
       bhoesch = import ./home.nix;
     };
   };
+
+
 
   # Install System packages.
   programs = {
