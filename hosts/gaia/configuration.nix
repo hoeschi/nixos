@@ -78,6 +78,12 @@
     variant = "";
   };
 
+    #xdg.portal = {
+        #enable = true;
+        #extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+    #};
+
+
   # Configure console keymap
   console.keyMap = "de";
 
@@ -153,6 +159,7 @@
   environment.systemPackages = with pkgs; [
 
     neovim
+    fastfetch
 
     github-desktop
     git
@@ -171,9 +178,11 @@
     })
 
     #streamdeck-ui
+    whatsapp-electron
 
     kdePackages.plasma-browser-integration
     kdePackages.kwallet
+
   ];
 
 
