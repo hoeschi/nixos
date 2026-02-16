@@ -31,7 +31,10 @@
     desktop.kdeplasma.enable = true;
     desktop.thunderbird.enable = true;
 
-    development.vscode.enable = true;
+    development = {
+      vscode.enable = true;
+      kitty.enable = true;
+    };
     
     gaming.enable = true;
   };
