@@ -2,7 +2,7 @@
 
 {
 
-options = {
+  options = {
     modules.desktop.thunderbird.enable = lib.mkEnableOption "Thunderbird setup";
   };
 
