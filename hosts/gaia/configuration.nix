@@ -143,6 +143,13 @@
   };
 
 
+  services = {
+
+    ratbagd.enable = true; # mice configuration service(needed for piper)
+  
+  };
+
+
 
   # Install System packages.
   programs = {
@@ -177,11 +184,17 @@
       ];
     })
 
-    #streamdeck-ui
     whatsapp-electron
 
     kdePackages.plasma-browser-integration
     kdePackages.kwallet
+
+    # Tools for Peripherie
+    streamdeck-ui
+    piper # for mouse config
+
+    evtest # for debbuging of input signals
+    xev
 
   ];
 
