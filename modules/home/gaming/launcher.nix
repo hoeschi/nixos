@@ -11,6 +11,15 @@
     
     home.packages = with pkgs; [
       steam
+      lutris
+
+      (heroic.override {
+        extraPkgs = pkgs': with pkgs'; [
+          gamescope
+          gamemode
+        ];
+      })
+
     ];
 
     programs.prismlauncher.enable = true;

@@ -177,14 +177,10 @@
         withVencord = true;
     })
 
-    (heroic.override {
-      extraPkgs = pkgs': with pkgs'; [
-        gamescope
-        gamemode
-      ];
-    })
+    
 
     whatsapp-electron
+    libreoffice
 
     kdePackages.plasma-browser-integration
     kdePackages.kwallet
