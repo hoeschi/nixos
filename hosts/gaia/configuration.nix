@@ -170,6 +170,9 @@
 
   environment.systemPackages = with pkgs; [
 
+    wineWowPackages.stable 
+    winetricks
+
     neovim
     fastfetch
 
