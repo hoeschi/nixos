@@ -14,6 +14,8 @@
       steam
       lutris
 
+      protonup-qt
+
       (heroic.override {
         extraPkgs = pkgs': with pkgs'; [
           gamescope
