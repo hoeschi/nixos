@@ -113,7 +113,7 @@
         alsa.support32Bit = true;
         pulse.enable = true;
         # If you want to use JACK applications, uncomment this
-        #jack.enable = true;
+        jack.enable = true;
 
         # use the example session manager (no others are packaged yet so this is enabled by default,
         # no need to redefine it in your config for now)
@@ -175,6 +175,8 @@
 
     neovim
     fastfetch
+    wget
+    helvum #Pipewire configuration with gui
 
     github-desktop
     git
@@ -200,6 +202,9 @@
     evtest # for debbuging of input signals
     xev
     input-remapper
+
+    # Guitare
+    guitarix
 
   ];
 
