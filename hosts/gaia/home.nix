@@ -33,6 +33,9 @@
 
     development = {
       vscode.enable = true;
+    };
+
+    terminal = {
       kitty.enable = true;
     };
     

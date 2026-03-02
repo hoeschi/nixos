@@ -1,13 +1,18 @@
 {config, lib, pkgs, ...}:
 
 {
-  options.modules.development.kitty.enable = lib.mkEnableOption "Kitty terminal";
+  options.modules.terminal.kitty.enable = lib.mkEnableOption "Kitty terminal";
 
-  config = lib.mkIf config.modules.development.kitty.enable {
+  config = lib.mkIf config.modules.terminal.kitty.enable {
 
     programs.kitty = {
 
       enable = true;
+
+      shellIntegration = {
+        #mode = "no-cursor";
+        enableZshIntegration = config.programs.zsh.enable;
+      };
 
       settings = {
         foreground = "#a9b1d6";
