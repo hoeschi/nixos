@@ -172,6 +172,8 @@
 
     wineWowPackages.stable 
     winetricks
+    protontricks
+
     freecad
     bambu-studio
 
