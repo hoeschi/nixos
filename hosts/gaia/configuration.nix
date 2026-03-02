@@ -172,6 +172,8 @@
 
     wineWowPackages.stable 
     winetricks
+    freecad
+    bambu-studio
 
     neovim
     fastfetch
