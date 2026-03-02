@@ -8,6 +8,7 @@
     autocd = true;
     enableCompletion = true;
     dotDir = "${config.home.homeDirectory}/.config/zsh"; # TODO: Add xdg module
+
     shellAliases =
       {
         ls = "eza --icons -l";
@@ -19,6 +20,7 @@
         lib.optionalAttrs config.programs.zoxide.enable
         {cd = "z";}
       );
+      
     initContent =
       ''
         # Enable branches to be displayed in the prompt
