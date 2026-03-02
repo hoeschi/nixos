@@ -128,11 +128,11 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-
     ];
+    shell = pkgs.zsh;
   };
 
-  #programs.home-manager.enable = true;
+  programs.zsh.enable = true;
 
   home-manager = {
 

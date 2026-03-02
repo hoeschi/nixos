@@ -3,7 +3,9 @@
   lib,
   ...
 }: {
+
   programs.zsh = {
+    
     enable = true;
     autocd = true;
     enableCompletion = true;
@@ -20,7 +22,7 @@
         lib.optionalAttrs config.programs.zoxide.enable
         {cd = "z";}
       );
-      
+
     initContent =
       ''
         # Enable branches to be displayed in the prompt

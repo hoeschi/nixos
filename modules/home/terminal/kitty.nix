@@ -11,7 +11,7 @@
 
       shellIntegration = {
         #mode = "no-cursor";
-        enableZshIntegration = config.programs.zsh.enable;
+        enableZshIntegration = true; # config.programs.zsh.enable;
       };
 
       settings = {
