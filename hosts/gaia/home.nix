@@ -24,6 +24,12 @@
     };
   };
 
+  home.packages = with pkgs; [
+
+    eza
+
+  ];
+
   #enable Modules
   modules = {
     browser.firefox.enable = true;
