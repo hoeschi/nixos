@@ -16,6 +16,7 @@
         onepassword-password-manager
         darkreader
         seventv
+        new-tab-override
 
       ];
 
