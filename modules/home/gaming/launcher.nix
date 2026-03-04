@@ -16,6 +16,8 @@
 
       protonup-qt
 
+      ryubing # Switch emulator
+
       (heroic.override {
         extraPkgs = pkgs': with pkgs'; [
           gamescope
