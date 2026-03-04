@@ -184,6 +184,8 @@
 
     github-desktop
     git
+    python315
+    unrar
 
     _1password-gui
     (discord.override {
