@@ -17,6 +17,7 @@
         v = "nvim";
         vim = "nvim";
         rebuild-switch = "nixos-rebuild switch --flake ~/nixos --sudo"; # NOTE: Previously --use-remote-sudo
+        rebuild-switch-upgrade = "nixos-rebuild switch --flake ~/nixos --sudo --upgrade-all";
       }
       // (
         lib.optionalAttrs config.programs.zoxide.enable
