@@ -176,6 +176,8 @@
 
   environment.systemPackages = with pkgs; [
 
+    home-manager
+
     #wineWowPackages.stable 
     #winetricks
     protontricks
