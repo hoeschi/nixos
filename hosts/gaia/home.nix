@@ -15,14 +15,14 @@
     stateVersion = "25.11";
   };
 
-  nixpkgs = {
-    overlays = [
-      inputs.nur.overlays.default
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
+  #nixpkgs = {
+  #  overlays = [
+  #    inputs.nur.overlays.default
+  #  ];
+  #  config = {
+  #    allowUnfree = true;
+  #  };
+  #};
 
   home.packages = with pkgs; [
 
