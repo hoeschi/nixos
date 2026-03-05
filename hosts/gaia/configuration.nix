@@ -5,6 +5,12 @@
 { inputs, config, pkgs, ... }:
 
 {
+
+    nixpkgs.overlays = [
+        inputs.nur.overlays.default   # <-- hinzufügen
+    ];
+
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -137,7 +143,7 @@
   home-manager = {
 
     # Fix use of unfree packages
-    #useGlobalPkgs = true;
+    useGlobalPkgs = true;
     useUserPackages = true;
 
     extraSpecialArgs = { inherit inputs; };
