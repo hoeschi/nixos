@@ -170,8 +170,8 @@
 
   environment.systemPackages = with pkgs; [
 
-    wineWowPackages.stable 
-    winetricks
+    #wineWowPackages.stable 
+    #winetricks
     protontricks
 
     freecad
@@ -210,7 +210,7 @@
     input-remapper
 
     # Guitare
-    guitarix
+    #guitarix
 
   ];
 
