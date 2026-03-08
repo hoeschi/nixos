@@ -107,8 +107,19 @@
     };
 
 
-    # Enable CUPS to print documents.
-    services.printing.enable = true;
+    services.printing = {
+        enable = true;
+        drivers = with pkgs; [
+            epson-escpr
+            epson-escpr2  # neuere Modelle wie WF-2630, WF-2650, WF-2660...
+        ];
+    };
+
+    services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+    };
 
     # Enable sound with pipewire.
     services.pulseaudio.enable = false;
