@@ -111,7 +111,7 @@
         enable = true;
         drivers = with pkgs; [
             epson-escpr
-            epson-escpr2  # neuere Modelle wie WF-2630, WF-2650, WF-2660...
+            epson-escpr2  # treiber für meinen Espson WF-26xx
         ];
     };
 
