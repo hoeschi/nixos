@@ -178,8 +178,8 @@
 
     home-manager
 
-    #wineWowPackages.stable 
-    #winetricks
+    wineWow64Packages.stable 
+    winetricks
     protontricks
 
     freecad
