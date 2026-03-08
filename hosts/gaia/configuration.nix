@@ -188,7 +188,8 @@
     neovim
     fastfetch
     wget
-    helvum #Pipewire configuration with gui
+    #helvum #Pipewire configuration with gui #not maintained
+    crosspipe # Pipewire configuration with gui, maintained fork of helvum
 
     github-desktop
     git
