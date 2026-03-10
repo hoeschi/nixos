@@ -204,6 +204,7 @@
 
     github-desktop
     git
+    lazygit
     python315
     unrar
 
