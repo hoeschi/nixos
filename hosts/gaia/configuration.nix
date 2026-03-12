@@ -203,8 +203,8 @@
     crosspipe # Pipewire configuration with gui, maintained fork of helvum
 
     github-desktop
-    git
-    lazygit
+    #git
+    #lazygit
     python315
     unrar
 
