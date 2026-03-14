@@ -5,10 +5,18 @@
   programs.git = {
 
     enable = true;
-    userName = "hoeschi";
-    userEmail = "hoeschbj+github@proton.me";
+    #userName = "hoeschi";
+    #userEmail = "hoeschbj+github@proton.me";
 
-    extraConfig = {
+    settings = {
+
+      user = {
+        name = "hoeschi";
+        email = "hoeschbj+github@proton.me";
+
+      };
+
+
       core.editor = "nvim";
       pull.rebase = false;
       init.defaultBranch = "main";
