@@ -188,6 +188,7 @@
   environment.systemPackages = with pkgs; [
 
     home-manager
+    nix-output-monitor
 
     wineWow64Packages.stable 
     winetricks
@@ -203,8 +204,6 @@
     crosspipe # Pipewire configuration with gui, maintained fork of helvum
 
     github-desktop
-    #git
-    #lazygit
     python315
     unrar
 
@@ -225,6 +224,8 @@
     # Tools for Peripherie
     streamdeck-ui
     piper # for mouse config
+
+    pavucontrol
 
     evtest # for debbuging of input signals
     xev
