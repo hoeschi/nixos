@@ -11,6 +11,8 @@
       profiles.default = {
         extensions = with pkgs.vscode-extensions; [
           ms-python.python
+          ms-azuretools.vscode-containers
+	  shd101wyy.markdown-preview-enhanced	
           #ms-toolsai.jupyter
           #ms-vscode.cpptools
           #ms-vscode.cmake-tools
