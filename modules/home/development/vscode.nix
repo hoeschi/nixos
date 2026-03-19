@@ -12,7 +12,8 @@
         extensions = with pkgs.vscode-extensions; [
           ms-python.python
           ms-azuretools.vscode-containers
-	  shd101wyy.markdown-preview-enhanced	
+	        shd101wyy.markdown-preview-enhanced	
+          platformio.platformio-vscode-ide
           #ms-toolsai.jupyter
           #ms-vscode.cpptools
           #ms-vscode.cmake-tools
