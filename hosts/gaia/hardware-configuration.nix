@@ -29,6 +29,12 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home/bhoesch/SSD-storage" =
+    { device = "/dev/disk/by-uuid/f85b202e-6bf3-4e71-b0b6-a876bf01c502";
+      fsType = "ext4";
+      options = [ "defaults" "noatime" "nofail" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/766a381f-0aae-4880-9eb3-411986f80e97"; }
     ];
