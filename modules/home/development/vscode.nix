@@ -4,7 +4,12 @@
     modules.development.vscode.enable = lib.mkEnableOption "VSCode setup";
   };
   config = lib.mkIf config.modules.development.vscode.enable {
-    
+
+    home.packages = with pkgs; [
+      platformio-core
+      avrdude
+    ];
+
     programs.vscode = {
       
       enable = true;
@@ -13,7 +18,7 @@
           ms-python.python
           ms-azuretools.vscode-containers
 	        shd101wyy.markdown-preview-enhanced	
-          platformio.platformio-vscode-ide
+          # platformio.platformio-vscode-ide # doesnt work
           #ms-toolsai.jupyter
           #ms-vscode.cpptools
           #ms-vscode.cmake-tools

@@ -138,6 +138,24 @@
     };
 
 
+  services.udev.packages = with pkgs; [
+      platformio-core.udev
+      openocd
+    ];
+
+
+  # Fix für die ARM-Toolchain, damit sie die benötigten Libs findet
+  programs.nix-ld = {
+    enable = true;
+    
+    # Ggf. zusätzliche Libs für den ARM-Toolchain
+    libraries = with pkgs; [
+      stdenv.cc.cc.lib
+      zlib
+      libusb1
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bhoesch = {
     isNormalUser = true;
@@ -195,7 +213,7 @@
     protontricks
 
     freecad
-    bambu-studio
+    #bambu-studio
 
     neovim
     fastfetch
