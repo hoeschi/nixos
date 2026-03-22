@@ -1,10 +1,8 @@
-{ config, pkgs, nix-flatpak, ... }:
+{ config, pkgs, ... }:
 {
-
   services.flatpak.enable = true;
-  
-  services.flatpak.package = [
+
+  services.flatpak.packages = [
     "com.bambulab.BambuStudio"
   ];
-
 }
