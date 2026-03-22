@@ -15,10 +15,12 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
+      inputs.nix-flatpak.nixosModules.nix-flatpak
 
       ./../../modules/system/sddm.nix
       ./../../modules/system/games.nix
       ./../../modules/system/flatpack.nix
+      ./../../modules/system/mounting.nix
     ];
 
    # NixOS Settings with Home Manager
@@ -160,6 +162,7 @@
   users.users.bhoesch = {
     isNormalUser = true;
     description = "Bjarne Hösch";
+    uid = 1000;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
@@ -248,6 +251,10 @@
     evtest # for debbuging of input signals
     xev
     input-remapper
+
+    samba
+    cifs-utils
+
 
     # Guitare
     #guitarix
