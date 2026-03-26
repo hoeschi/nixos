@@ -227,6 +227,7 @@
     github-desktop
     python315
     unrar
+    #globalprotect-openconnect # see error note
 
     _1password-gui
     (discord.override {
