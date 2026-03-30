@@ -29,6 +29,16 @@
 
     programs.prismlauncher.enable = true;
 
+    programs.mangohud = {
+      enable = true;
+      settings = {
+        toggle_hud = "F10";
+        gpu_temp = true;
+        cpu_temp = true;
+        no_display = true;
+      };
+    };
+
   };
 
 
