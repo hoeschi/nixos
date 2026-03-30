@@ -3,6 +3,7 @@
   
   systemd.tmpfiles.rules = [
     "d /home/bhoesch/NAS 0755 bhoesch users -"
+    "d /home/bhoesch/NAS/Bjarnes_Datenkerker 0755 bhoesch users -"
   ];
 
   fileSystems."/home/bhoesch/NAS/Bjarnes_Datenkerker" = {
@@ -18,7 +19,7 @@
       "_netdev"
       "nofail"
       "x-systemd.automount"
-      "x-systemd.idle-timeout=60"
+      "x-systemd.idle-timeout=600s"
     ];
   };
 }
