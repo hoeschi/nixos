@@ -189,6 +189,7 @@
 
     ratbagd.enable = true; # mice configuration service(needed for piper)
     input-remapper.enable = true;
+    mullvad-vpn.enable = true;
   
   };
 
@@ -223,6 +224,7 @@
     wget
     #helvum #Pipewire configuration with gui #not maintained
     crosspipe # Pipewire configuration with gui, maintained fork of helvum
+    libstrangle
 
     github-desktop
     python315
@@ -236,6 +238,7 @@
     })
 
     mullvad-vpn
+    mullvad-browser
 
     whatsapp-electron
     libreoffice
