@@ -60,10 +60,12 @@
         };
       };
       git = {
-        paging = {
-          colorArg = "always";
-          pager = "diff-so-fancy";
-        };
+        pagers = [
+          {
+            colorArg = "always";
+            pager = "diff-so-fancy";
+          }
+        ];
       };
     };
   };
