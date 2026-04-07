@@ -80,6 +80,10 @@
     #services.displayManager.sddm.enable = true;
     services.desktopManager.plasma6.enable = true;
 
+    environment.sessionVariables = {
+      RADV_PERFTEST = "gpl";
+    };
+
 
     #  Configure keymap in X11
     services.xserver.xkb = {
@@ -242,6 +246,7 @@
 
     whatsapp-electron
     libreoffice
+    onlyoffice-desktopeditors
 
     kdePackages.plasma-browser-integration
     kdePackages.kwallet
