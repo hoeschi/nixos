@@ -159,6 +159,7 @@
       stdenv.cc.cc.lib
       zlib
       libusb1
+      libxcb
     ];
   };
 
