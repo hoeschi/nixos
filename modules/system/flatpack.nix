@@ -4,5 +4,6 @@
 
   services.flatpak.packages = [
     "com.bambulab.BambuStudio"
+    "org.jdownloader.JDownloader"
   ];
 }
