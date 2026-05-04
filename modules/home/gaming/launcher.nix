@@ -12,7 +12,7 @@
 
     home.packages = with pkgs; [
       steam
-      lutris
+      #lutris
 
       protonup-qt
 
