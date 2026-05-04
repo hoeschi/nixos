@@ -7,6 +7,7 @@
   config = lib.mkIf config.modules.browser.firefox.enable {
 
     programs.firefox.enable = true;
+    programs.firefox.configPath = ".mozilla/firefox";
 
     programs.firefox.profiles.default = {
       # Konfiguration
