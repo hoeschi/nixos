@@ -234,12 +234,13 @@
     github-desktop
     python315
     unrar
+    geogebra
     #globalprotect-openconnect # see error note
 
     _1password-gui
     (discord.override {
         withOpenASAR = true;
-        withVencord = true;
+        #withVencord = true;
     })
 
     mullvad-vpn
@@ -248,6 +249,7 @@
     whatsapp-electron
     libreoffice
     onlyoffice-desktopeditors
+    zotero # citation manager
 
     kdePackages.plasma-browser-integration
     kdePackages.kwallet
