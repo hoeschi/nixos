@@ -22,4 +22,21 @@
       "x-systemd.idle-timeout=600s"
     ];
   };
+
+
+  fileSystems."/home/bhoesch/NAS/Jellyfin" = {
+    device = "192.168.178.137:/mnt/Storage_HDD/Jellyfin";
+    fsType = "nfs";
+    options = [
+      "nfsvers=4"
+      "hard"
+      "intr"
+      "rsize=1048576"
+      "wsize=1048576"
+      "async"
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
+  };
 }
