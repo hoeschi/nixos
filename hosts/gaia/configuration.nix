@@ -144,36 +144,51 @@
     };
 
 
-  services.udev.packages = with pkgs; [
+    services.udev.packages = with pkgs; [
       platformio-core.udev
       openocd
     ];
 
 
   # Fix für die ARM-Toolchain, damit sie die benötigten Libs findet
-  programs.nix-ld = {
-    enable = true;
+    programs.nix-ld = {
+        enable = true;
     
-    # Ggf. zusätzliche Libs für den ARM-Toolchain
-    libraries = with pkgs; [
-      stdenv.cc.cc.lib
-      zlib
-      libusb1
-      libxcb
-    ];
-  };
+        # Ggf. zusätzliche Libs für den ARM-Toolchain
+        libraries = with pkgs; [
+            stdenv.cc.cc.lib
+            zlib
+            libusb1
+            libxcb
+            icu
+
+            fontconfig
+            freetype
+            libGL
+            libX11
+            libXext
+            libICE
+            libSM
+            libXi
+            libXrender
+            libXrandr
+            libXcursor
+            libXinerama
+            libxkbcommon
+        ];
+    };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.bhoesch = {
-    isNormalUser = true;
-    description = "Bjarne Hösch";
-    uid = 1000;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
-    shell = pkgs.zsh;
-  };
+    users.users.bhoesch = {
+        isNormalUser = true;
+        description = "Bjarne Hösch";
+        uid = 1000;
+        extraGroups = [ "networkmanager" "wheel" ];
+        packages = with pkgs; [
+        kdePackages.kate
+        ];
+        shell = pkgs.zsh;
+    };
 
   programs.zsh.enable = true;
 
@@ -240,7 +255,7 @@
     _1password-gui
     (discord.override {
         withOpenASAR = true;
-        #withVencord = true;
+        withVencord = true;
     })
 
     mullvad-vpn
@@ -253,6 +268,7 @@
 
     kdePackages.plasma-browser-integration
     kdePackages.kwallet
+    kdePackages.kclock
 
     # Tools for Peripherie
     streamdeck-ui
@@ -266,6 +282,20 @@
 
     samba
     cifs-utils
+    yt-dlp # xD
+    vlc
+    libbluray
+    libaacs
+    ffmpeg
+    mkvtoolnix
+
+    gcc
+    libgcc
+    gnumake
+    cmake
+    #extra-cmake-modules
+    makemkv
+    iperf3 # network performance measurement tool
 
 
     # Guitare
