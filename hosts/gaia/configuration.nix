@@ -82,6 +82,8 @@
 
     environment.sessionVariables = {
       RADV_PERFTEST = "gpl";
+      PATH = [ "$HOME/.local/bin" ];
+
     };
 
 

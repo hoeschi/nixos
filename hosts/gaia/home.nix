@@ -30,6 +30,11 @@
 
   ];
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
+
   #enable Modules
   modules = {
     browser.firefox.enable = true;
