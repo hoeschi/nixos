@@ -15,6 +15,8 @@
     stateVersion = "25.11";
   };
 
+  #home.enableNixpkgsReleaseCheck = false; # use if unmatched nixopkgs and home manager versions
+
   #nixpkgs = {
   #  overlays = [
   #    inputs.nur.overlays.default
@@ -44,6 +46,8 @@
 
     development = {
       vscode.enable = true;
+      docker.enable = false;
+      claude.enable = true;
     };
 
     terminal = {

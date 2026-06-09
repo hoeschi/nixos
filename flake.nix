@@ -24,10 +24,14 @@
       #inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-claude-code = {
+      url = "github:ryoppippi/nix-claude-code";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, nix-claude-code, ... } @ inputs:
   {
 
     nixosConfigurations = {

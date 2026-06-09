@@ -13,14 +13,15 @@
 
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-      inputs.nix-flatpak.nixosModules.nix-flatpak
+        ./hardware-configuration.nix
+        inputs.home-manager.nixosModules.default
+        inputs.nix-flatpak.nixosModules.nix-flatpak
 
-      ./../../modules/system/sddm.nix
-      ./../../modules/system/games.nix
-      ./../../modules/system/flatpack.nix
-      ./../../modules/system/mounting.nix
+        ./../../modules/system/sddm.nix
+        ./../../modules/system/games.nix
+        ./../../modules/system/flatpack.nix
+        ./../../modules/system/mounting.nix
+        ./../../modules/system/ollama.nix
     ];
 
    # NixOS Settings with Home Manager
@@ -45,7 +46,10 @@
 
 
   networking.hostName = "gaia"; # Define your hostname.
-  
+  networking.firewall = {
+    trustedInterfaces = [ "docker0" ];
+  };
+
   # Enable networking
   networking.networkmanager.enable = true;
   # enable systemd DNS resolver
@@ -151,6 +155,12 @@
       openocd
     ];
 
+    services.openssh = {
+      enable = true;
+      listenAddresses = [{ addr = "172.17.0.1"; port = 22; }];
+      settings.PasswordAuthentication = false;
+    };
+
 
   # Fix für die ARM-Toolchain, damit sie die benötigten Libs findet
     programs.nix-ld = {
@@ -185,7 +195,7 @@
         isNormalUser = true;
         description = "Bjarne Hösch";
         uid = 1000;
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" "docker"];
         packages = with pkgs; [
         kdePackages.kate
         ];
@@ -215,6 +225,7 @@
   
   };
 
+  virtualisation.docker.enable = true; # to enable the docker deamon
 
 
   # Install System packages.
@@ -253,6 +264,8 @@
     unrar
     geogebra
     #globalprotect-openconnect # see error note
+    gpclient
+    #gp-saml-gui
 
     _1password-gui
     (discord.override {
@@ -267,6 +280,7 @@
     libreoffice
     onlyoffice-desktopeditors
     zotero # citation manager
+    obsidian # note taking app
 
     kdePackages.plasma-browser-integration
     kdePackages.kwallet
@@ -298,6 +312,13 @@
     #extra-cmake-modules
     makemkv
     iperf3 # network performance measurement tool
+
+    docker
+    docker-compose
+    lazydocker
+
+    #claude-code
+    #claude-monitor
 
 
     # Guitare
