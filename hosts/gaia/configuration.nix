@@ -26,7 +26,18 @@
 
    # NixOS Settings with Home Manager
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+        experimental-features = [ "nix-command" "flakes" ];
+        auto-optimise-store = true;
+    };
+
+    # Garbage collection settings
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 4d";
+    };
+
   };
 
   # Bootloader.
@@ -239,6 +250,19 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  fonts.packages = with pkgs; [
+    # ttf-ms-fonts
+    # ttf-vista-fonts
+    # ttf-liberation
+    # ttf-dejavu
+    # ttf-roboto
+    # ttf-fira-code
+    # ttf-jetbrains-mono
+    corefonts
+    vista-fonts
+    #nerd-fonts
+  ];
+
 
   environment.systemPackages = with pkgs; [
 
@@ -255,12 +279,16 @@
     neovim
     fastfetch
     wget
+    curl
+    p7zip
     #helvum #Pipewire configuration with gui #not maintained
     crosspipe # Pipewire configuration with gui, maintained fork of helvum
     libstrangle
 
     github-desktop
+    #python312
     python315
+    conda
     unrar
     geogebra
     #globalprotect-openconnect # see error note
@@ -300,10 +328,14 @@
     cifs-utils
     yt-dlp # xD
     vlc
+    libbdplus
     libbluray
     libaacs
     ffmpeg
     mkvtoolnix
+    bento4 # for mp4decrypt for Crunchayroll downloads
+    corefonts
+    vista-fonts
 
     gcc
     libgcc
