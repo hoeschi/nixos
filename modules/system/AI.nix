@@ -36,4 +36,14 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 11434 ];
+
+  services.open-webui = {
+  enable = true;
+  port = 8080;
+  environment = {
+    OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+    #WEBUI_SECRET_KEY = "…";  # für MCP nötig; besser via agenix/sops als Secret
+    ENABLE_RAG_WEB_SEARCH = "true";
+  };
+};
 }

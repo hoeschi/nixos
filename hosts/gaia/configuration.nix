@@ -21,7 +21,7 @@
         ./../../modules/system/games.nix
         ./../../modules/system/flatpack.nix
         ./../../modules/system/mounting.nix
-        ./../../modules/system/ollama.nix
+        ./../../modules/system/AI.nix
     ];
 
    # NixOS Settings with Home Manager
@@ -198,6 +198,8 @@
             libXcursor
             libXinerama
             libxkbcommon
+
+            gnutls
         ];
     };
 
@@ -264,99 +266,109 @@
   ];
 
 
-  environment.systemPackages = with pkgs; [
+    # Vulkan / graphics stack needed for DXVK translation layer used by Bottles runners
+    hardware.graphics.extraPackages = with pkgs; [
+        libva-vdpau-driver
+        libvdpau-va-gl
+    ];
 
-    home-manager
-    nix-output-monitor
+    environment.systemPackages = with pkgs; [
 
-    wineWow64Packages.stable 
-    winetricks
-    protontricks
+        home-manager
+        nix-output-monitor
 
-    freecad
-    #bambu-studio
+        wineWow64Packages.stable
+        winetricks
+        protontricks
 
-    neovim
-    fastfetch
-    wget
-    curl
-    p7zip
-    #helvum #Pipewire configuration with gui #not maintained
-    crosspipe # Pipewire configuration with gui, maintained fork of helvum
-    libstrangle
+        #freecad
+        #bambu-studio
 
-    github-desktop
-    #python312
-    python315
-    conda
-    unrar
-    geogebra
-    #globalprotect-openconnect # see error note
-    gpclient
-    #gp-saml-gui
+        neovim
+        fastfetch
+        wget
+        curl
+        p7zip
+        #helvum #Pipewire configuration with gui #not maintained
+        crosspipe # Pipewire configuration with gui, maintained fork of helvum
+        libstrangle
+        rustdesk # Remote Zugriff auf Laptop
 
-    _1password-gui
-    (discord.override {
-        withOpenASAR = true;
-        withVencord = true;
-    })
+        github-desktop
+        #python312
+        python315
+        conda
+        unrar
+        geogebra
+        #globalprotect-openconnect # see error note
+        gpclient
+        #gp-saml-gui
 
-    mullvad-vpn
-    mullvad-browser
+        _1password-gui
+        (discord.override {
+            withOpenASAR = true;
+            withVencord = true;
+        })
 
-    whatsapp-electron
-    libreoffice
-    onlyoffice-desktopeditors
-    zotero # citation manager
-    obsidian # note taking app
+        mullvad-vpn
+        mullvad-browser
 
-    kdePackages.plasma-browser-integration
-    kdePackages.kwallet
-    kdePackages.kclock
+        whatsapp-electron
+        libreoffice
+        onlyoffice-desktopeditors
+        zotero # citation manager
+        obsidian # note taking app
 
-    # Tools for Peripherie
-    streamdeck-ui
-    piper # for mouse config
+        kdePackages.plasma-browser-integration
+        kdePackages.kwallet
+        kdePackages.kclock
 
-    pavucontrol
+        # Tools for Peripherie
+        streamdeck-ui
+        piper # for mouse config
 
-    evtest # for debbuging of input signals
-    xev
-    input-remapper
+        pavucontrol
 
-    samba
-    cifs-utils
-    yt-dlp # xD
-    vlc
-    libbdplus
-    libbluray
-    libaacs
-    ffmpeg
-    mkvtoolnix
-    bento4 # for mp4decrypt for Crunchayroll downloads
-    corefonts
-    vista-fonts
+        evtest # for debbuging of input signals
+        xev
+        input-remapper
 
-    gcc
-    libgcc
-    gnumake
-    cmake
-    #extra-cmake-modules
-    makemkv
-    iperf3 # network performance measurement tool
+        samba
+        cifs-utils
+        yt-dlp # xD
+        vlc
+        libbdplus
+        libbluray
+        libaacs
+        ffmpeg
+        mkvtoolnix
+        bento4 # for mp4decrypt for Crunchayroll downloads
+        corefonts
+        vista-fonts
 
-    docker
-    docker-compose
-    lazydocker
+        gcc
+        libgcc
+        gnumake
+        cmake
+        #extra-cmake-modules
+        makemkv
+        iperf3 # network performance measurement tool
 
-    #claude-code
-    #claude-monitor
+        docker
+        docker-compose
+        lazydocker
 
+        #bottles
+        vulkan-tools
 
-    # Guitare
-    #guitarix
+        #claude-code
+        #claude-monitor
+        gnutls
 
-  ];
+        # Guitare
+        #guitarix
+
+    ];
 
 
   # This value determines the NixOS release from which the default
