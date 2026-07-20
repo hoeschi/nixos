@@ -29,9 +29,14 @@
       #inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, nix-claude-code, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, nix-claude-code, sops-nix, ... } @ inputs:
   {
 
     nixosConfigurations = {
@@ -41,6 +46,7 @@
         specialArgs = { inherit inputs; };
         modules = [
             ./hosts/echo/configuration.nix
+            sops-nix.nixosModules.sops
         ];
       };
 
@@ -49,6 +55,7 @@
         specialArgs = { inherit inputs; };
         modules = [
             ./hosts/gaia/configuration.nix
+            sops-nix.nixosModules.sops
         ];
       };
 

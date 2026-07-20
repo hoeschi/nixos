@@ -368,6 +368,10 @@
         # Guitare
         #guitarix
 
+        sops 
+        age
+        openssl
+
     ];
 
 

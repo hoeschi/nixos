@@ -1,0 +1,8 @@
+# ~/nixos/.sops.yaml
+keys:
+  - &gaia age1lr93emjden8xwcj2z34pvy6e5sv5gw2khw04m30uer9qcf08f52qsgsvf8
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *gaia
