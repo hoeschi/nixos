@@ -11,7 +11,7 @@
 # GPU-Nutzung prüfen:
 #   ollama ps
 
-{ pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   # Ollama mit AMD ROCm GPU-Beschleunigung
@@ -38,12 +38,41 @@
   networking.firewall.allowedTCPPorts = [ 11434 ];
 
   services.open-webui = {
-  enable = true;
-  port = 8080;
-  environment = {
-    OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-    #WEBUI_SECRET_KEY = "…";  # für MCP nötig; besser via agenix/sops als Secret
-    ENABLE_RAG_WEB_SEARCH = "true";
+    enable = true;
+    port = 8080;
+    environment = {
+      OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+      #WEBUI_SECRET_KEY = "…";  # für MCP nötig; besser via agenix/sops als Secret
+      ENABLE_RAG_WEB_SEARCH = "true";
+      ENABLE_WEB_SEARCH = "True";
+      WEB_SEARCH_ENGINE = "searxng";
+      SEARXNG_QUERY_URL = "http://127.0.0.1:8888/search?q=<query>";
+      WEB_SEARCH_RESULT_COUNT = "5";
+      WEB_SEARCH_CONCURRENT_REQUESTS = "0";
+    };
   };
-};
+
+  services.searx = {
+    enable = true;
+    redisCreateLocally = true;              # richtet Valkey/Redis für den Limiter mit ein
+    environmentFile = config.sops.secrets.searxng_env.path;
+
+    settings = {
+      server = {
+        bind_address = "127.0.0.1";
+        port = 8888;
+        secret_key = "@SEARXNG_SECRET@";     # wird aus dem environmentFile ersetzt
+      };
+      search.formats = [ "html" "json" ];    # <-- DER kritische Punkt, sonst 403/leer
+      ui.static_use_hash = true;
+    };
+
+    # SearXNG als HTTP-Endpunkt exponieren, den Open WebUI erreichen kann:
+    configureUwsgi = true;
+    uwsgiConfig = {
+      http = "127.0.0.1:8888";
+      disable-logging = true;
+    };
+  };
+
 }
