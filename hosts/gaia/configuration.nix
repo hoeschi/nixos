@@ -22,6 +22,7 @@
         ./../../modules/system/flatpack.nix
         ./../../modules/system/mounting.nix
         ./../../modules/system/AI.nix
+        ./../../modules/system/sops.nix
     ];
 
    # NixOS Settings with Home Manager
@@ -272,6 +273,15 @@
         libvdpau-va-gl
     ];
 
+    programs.steam = {
+        enable = true;
+        package = pkgs.steam.override {
+          extraEnv = {
+            MANGOHUD = true;
+          };
+        };
+    };
+
     environment.systemPackages = with pkgs; [
 
         home-manager
@@ -281,6 +291,7 @@
         winetricks
         protontricks
 
+        kicad
         #freecad
         #bambu-studio
 
