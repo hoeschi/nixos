@@ -10,8 +10,10 @@
 
   config = lib.mkIf config.modules.gaming.enable {
 
+    
+
     home.packages = with pkgs; [
-      steam
+      #steam
       steam-run
       #lutris
 
