@@ -1,6 +1,6 @@
-# ollama.nix
+# AI.nix
 # Importieren in configuration.nix:
-#   imports = [ ./ollama.nix ];
+#   imports = [ ./AI.nix ];
 #
 # Nach Änderungen aktivieren:
 #   sudo nixos-rebuild switch
