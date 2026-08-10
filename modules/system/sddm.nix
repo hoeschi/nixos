@@ -1,14 +1,8 @@
 { config, pkgs, ... }:
 {
   services = {
-    
-    xserver = {
-      enable = true;
-      xkb = {
-          layout = "de";
-          variant = "";
-        };
-    };
+
+    xserver.enable = true;
 
     displayManager = {
 
