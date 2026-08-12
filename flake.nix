@@ -34,10 +34,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    esp-dev.url = "github:mirrexagon/nixpkgs-esp-dev";
+
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, nix-claude-code, sops-nix, ... } @ inputs:
-  {
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, nix-claude-code, sops-nix, esp-dev,... } @ inputs:
+  let
+    system = "x86_64-linux";
+  in {
 
     nixosConfigurations = {
 
@@ -58,8 +62,12 @@
             sops-nix.nixosModules.sops
         ];
       };
+    };
 
+    devShells.${system} = {
+      esp32 = esp-dev.devShells.${system}.esp-idf-full;
     };
 
   };
+  
 }
