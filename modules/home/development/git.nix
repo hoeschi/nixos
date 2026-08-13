@@ -60,10 +60,10 @@
         };
       };
       git = {
-        pagers = [
+        diffRenderers = [
           {
             colorArg = "always";
-            pager = "diff-so-fancy";
+            command = "diff-so-fancy";
           }
         ];
       };
