@@ -24,10 +24,10 @@
       #inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-claude-code = {
-      url = "github:ryoppippi/nix-claude-code";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #nix-claude-code = {
+    #  url = "github:ryoppippi/nix-claude-code";
+    #  #inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -38,7 +38,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, nix-claude-code, sops-nix, esp-dev,... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, sops-nix, esp-dev,... } @ inputs:
   let
     system = "x86_64-linux";
   in {

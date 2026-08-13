@@ -8,6 +8,7 @@
 
     nixpkgs.overlays = [
         inputs.nur.overlays.default   # <-- hinzufügen
+        #inputs.nix-claude-code.overlays.default
     ];
 
 
