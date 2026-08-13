@@ -196,6 +196,8 @@
     # Fix use of unfree packages
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "hm-bak";
+    overwriteBackup = true;
 
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -269,7 +271,6 @@
         #bambu-studio
 
         neovim
-        fastfetch
         wget
         curl
         p7zip
