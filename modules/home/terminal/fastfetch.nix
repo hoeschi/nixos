@@ -19,7 +19,7 @@
         "uptime"
         "packages"
         "shell"
-        "de"
+        #"de"
         "wm"
         "terminal"
         "cpu"
