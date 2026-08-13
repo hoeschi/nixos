@@ -35,9 +35,9 @@
         mouse_hide_wait = 0.0;
         enabled_layouts = "*";
 
-        remember_window_size = false;
-        initial_window_width = 640;
-        initial_window_height = 400;
+        remember_window_size = true;
+        #initial_window_width = 640;
+        #initial_window_height = 400;
 
         repaint_delay = 10;
         input_delay = 3;
@@ -63,7 +63,7 @@
 
         cursor = "#c0caf5";
 
-        hide_window_decorations = "titlebar-only";
+        #hide_window_decorations = "titlebar-only";
         macos_option_as_alt = false;
         macos_titlebar_color = "background";
 
