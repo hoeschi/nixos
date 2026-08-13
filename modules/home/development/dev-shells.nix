@@ -2,7 +2,8 @@
 
 let
   mkDevShell = name: attr: pkgs.writeShellScriptBin name ''
-    exec nix develop "path:$HOME/nixos#${attr}" "$@"
+    export DEV_SHELL_NAME="${attr}"
+    exec nix develop "path:$HOME/nixos#${attr}" -c "$SHELL" "$@"
   '';
 in {
   home.packages = [
