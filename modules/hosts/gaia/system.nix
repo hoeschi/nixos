@@ -9,6 +9,9 @@
 
     includes = [ 
       den.batteries.hostname
+
+      den.aspects.system.provides.sddm
+      den.aspects.gui.provides.plasma
       
     ];
 
@@ -100,7 +103,6 @@
           listenAddresses = [{ addr = "172.17.0.1"; port = 22; }];
           #settings.PasswordAuthentication = false;
         };
-
         printing = {
           enable = true;
           drivers = with pkgs; [
@@ -108,17 +110,15 @@
               epson-escpr2  # treiber für meinen Espson WF-26xx
           ];
         };
-
         avahi = {
           enable = true;
           nssmdns4 = true;
           openFirewall = true;
         };
-
         ratbagd.enable = true; # mice configuration service(needed for piper)
         input-remapper.enable = true;
         mullvad-vpn.enable = true;
-
+        resolved.enable = true; # enable systemd DNS resolver
       };
 
       # Enable sound with pipewire.
@@ -142,6 +142,81 @@
       };
       
       virtualisation.docker.enable = true; # to enable the docker deamon
+
+      environment.systemPackages = with pkgs; [
+
+        #home-manager
+        nix-output-monitor
+
+        wineWow64Packages.stable
+        winetricks
+        protontricks
+
+        kicad
+        #freecad
+        #bambu-studio
+
+        neovim
+        wget
+        curl
+        p7zip
+        crosspipe # Pipewire configuration with gui, maintained fork of helvum
+        libstrangle
+        rustdesk # Remote Zugriff auf Laptop
+
+        python315
+        unrar
+
+        _1password-gui
+
+        mullvad-vpn
+        mullvad-browser
+
+        whatsapp-electron
+        onlyoffice-desktopeditors
+        zotero # citation manager
+        obsidian # note taking app
+
+        piper # for mouse config
+
+        pavucontrol
+
+        input-remapper
+
+        samba
+        cifs-utils
+        yt-dlp # xD
+        vlc
+        libbdplus
+        libbluray
+        libaacs
+        ffmpeg
+        mkvtoolnix
+        bento4 # for mp4decrypt for Crunchyroll downloads
+        #makemkv
+
+        corefonts
+        vista-fonts
+
+        gcc
+        libgcc
+        gnumake
+        cmake
+
+        docker
+        docker-compose
+        lazydocker
+
+        #bottles
+        vulkan-tools
+
+        gnutls
+
+        sops 
+        age
+        openssl
+
+      ];
 
 
       # This value determines the NixOS release from which the default

@@ -6,11 +6,9 @@
 
       (den.batteries.user-shell "zsh")
 
-      den.aspects.system.provides.sddm
+      
       den.aspects.system.provides.flatpak
       den.aspects.system.provides.mounting
-
-      den.aspects.gui.provides.plasma
 
       den.aspects.development.provides.vscode
       den.aspects.development.provides.git
@@ -22,6 +20,9 @@
       den.aspects.shell.provides.kitty
 
       den.aspects.gaming
+      den.aspects.email
+
+      den.aspects.browser.provides.firefox
 
     ];
 
@@ -39,7 +40,7 @@
     homeManager = {pkgs, config, ...}: 
     {
       
-      programs.home-manager.enable = true;
+      #programs.home-manager.enable = true;
 
       home = {
         username = "bhoesch";
