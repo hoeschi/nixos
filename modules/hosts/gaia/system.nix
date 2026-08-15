@@ -13,8 +13,6 @@
     ];
 
 
-
-
     nixos = {pkgs, config, ...}: {
 
       imports = [
@@ -51,9 +49,12 @@
         };
       };
     
-      nixpkgs.overlays = [
-        inputs.nur.overlays.default   # <-- hinzufügen
-      ];
+      nixpkgs = {
+        config.allowUnfree = true;
+        overlays = [
+          inputs.nur.overlays.default   # <-- hinzufügen
+        ];
+      };
 
       networking = {
         firewall = {
