@@ -38,7 +38,7 @@
   networking.firewall.allowedTCPPorts = [ 11434 ];
 
   services.open-webui = {
-    enable = true;
+    enable = false;  # true = WebUI aktivieren, false = nur API-Endpunkt
     port = 8080;
     environment = {
       OLLAMA_BASE_URL = "http://127.0.0.1:11434";
@@ -53,7 +53,8 @@
   };
 
   services.searx = {
-    enable = true;
+    enable = true;  # true = SearXNG aktivieren, false = nur API-Endpunkt
+    package = pkgs.searxng;
     redisCreateLocally = true;              # richtet Valkey/Redis für den Limiter mit ein
     environmentFile = config.sops.secrets.searxng_env.path;
 
