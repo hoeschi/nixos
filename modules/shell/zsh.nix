@@ -33,8 +33,7 @@
             vim = "nvim";
             rebuild-switch = "nixos-rebuild switch --flake ~/nixos --sudo";
             rebuild-switch-upgrade = "nix flake update --flake ~/nixos && nixos-rebuild switch --flake ~/nixos --sudo";
-          }
-          // (lib.optionalAttrs config.programs.zoxide.enable {cd = "z";});
+          };
 
         initContent = ''
 
