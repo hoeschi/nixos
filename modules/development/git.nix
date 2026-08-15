@@ -3,7 +3,7 @@
 
   den.aspects.development.provides.git = {
 
-    homeManager = {pkgs, ...}:
+    homeManager = {pkgs, config, ...}:
     {
 
       programs.git = {
