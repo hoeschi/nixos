@@ -9,7 +9,7 @@
     {
       services = {
         flatpak.enable = true;
-        flatpak.packages = [
+        flatpak.package = [
           "com.bambulab.BambuStudio"
           "org.jdownloader.JDownloader"
         ];
