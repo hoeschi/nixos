@@ -44,12 +44,12 @@
     nixosConfigurations = {
 
       # Test-Laptop
-      echo = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-            ./modules/hosts/echo/configuration.nix
-        ];
-      };
+      #echo = nixpkgs.lib.nixosSystem {
+      #  specialArgs = { inherit inputs; };
+      #  modules = [
+      #      ./modules/hosts/echo/configuration.nix
+      #  ];
+      #};
 
       # Main-Desktop
       gaia = nixpkgs.lib.nixosSystem {
