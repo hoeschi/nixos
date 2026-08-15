@@ -36,7 +36,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, sops-nix, esp-dev,... } @ inputs:
+  outputs = { self, nixpkgs, den, home-manager, nix-flatpak, stylix, sops-nix, esp-dev,... } @ inputs:
   let
     system = "x86_64-linux";
   in {
@@ -55,7 +55,7 @@
       gaia = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-            ./modules/hosts/gaia/configuration.nix
+            ./_modules/hosts/gaia/configuration.nix
             sops-nix.nixosModules.sops
         ];
       };
