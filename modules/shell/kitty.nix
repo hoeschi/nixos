@@ -3,7 +3,7 @@
   ...
 }:
 {
-  den.aspects.shell.provides.fastfetch = {
+  den.aspects.shell.provides.kitty = {
 
     homeManager = {pkgs, config,...}:
     {
@@ -33,7 +33,7 @@
           scrollback_pager = "less +G -R";
           wheel_scroll_multiplier = 5.0;
 
-          click_intreval = 0.5;
+          click_interval = 0.5;
           select_by_word_characters = ":@-./_~?&=%+#";
           mouse_hide_wait = 0.0;
           enabled_layouts = "*";
