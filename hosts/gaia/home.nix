@@ -3,7 +3,7 @@
 {
 
   imports = [
-      ../../modules/home
+      ../../home
   ];
 
   programs.home-manager.enable = true;
@@ -30,19 +30,6 @@
 
 
   };
-
-  #home.enableNixpkgsReleaseCheck = false; # use if unmatched nixopkgs and home manager versions
-
-  #nixpkgs = {
-  #  overlays = [
-  #    inputs.nur.overlays.default
-  #  ];
-  #  config = {
-  #    allowUnfree = true;
-  #  };
-  #};
-
-  
 
   home.sessionPath = [
       "$HOME/.local/bin"
