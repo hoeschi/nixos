@@ -25,10 +25,13 @@
         ./../../modules/system/mounting.nix
         ./../../modules/system/AI.nix
         ./../../modules/system/sops.nix
+        ./../../modules/system/xdg.nix
     ];
 
    # NixOS Settings with Home Manager
   nix = {
+    channel.enable = false;
+
     settings = {
         experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;
@@ -81,9 +84,11 @@
     services.desktopManager.plasma6.enable = true;
 
     environment.sessionVariables = {
-      RADV_PERFTEST = "gpl";
-      PATH = [ "$HOME/.local/bin" ];
-
+        RADV_PERFTEST     = "gpl";                        # AMD: Shader-Ruckler reduzieren
+        PATH              = [ "$HOME/.local/bin" ];
+        PULSE_COOKIE      = "$HOME/.config/pulse/cookie"; # greift nicht für Steam (eigene libpulse)
+        COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
+        CLAUDE_CONFIG_DIR = "$HOME/.config/claude";       # undokumentiert; VSCode-Ext. ignoriert sie
     };
 
 
@@ -283,7 +288,6 @@
         github-desktop
         #python312
         python315
-        conda
         unrar
         geogebra
         #globalprotect-openconnect # see error note
@@ -337,7 +341,7 @@
         gnumake
         cmake
         #extra-cmake-modules
-        makemkv
+        #makemkv
         iperf3 # network performance measurement tool
 
         docker
@@ -357,6 +361,7 @@
         sops 
         age
         openssl
+        tailscale
 
     ];
 
