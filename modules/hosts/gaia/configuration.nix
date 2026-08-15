@@ -18,14 +18,14 @@
         inputs.home-manager.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
 
-        ./../../modules/system/sddm.nix
-        ./../../modules/system/locale.nix
-        ./../../modules/system/games.nix
-        ./../../modules/system/flatpack.nix
-        ./../../modules/system/mounting.nix
-        ./../../modules/system/AI.nix
-        ./../../modules/system/sops.nix
-        ./../../modules/system/xdg.nix
+        ./system/sddm.nix
+        ./system/locale.nix
+        ./system/games.nix
+        ./system/flatpack.nix
+        ./system/mounting.nix
+        ./system/AI.nix
+        ./system/sops.nix
+        ./system/xdg.nix
     ];
 
    # NixOS Settings with Home Manager
