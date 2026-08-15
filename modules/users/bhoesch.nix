@@ -6,6 +6,10 @@
 
       (den.batteries.user-shell "zsh")
 
+      den.aspects.development.provides.vscode
+
+      den.aspects.shell.provides.zsh
+
     ];
 
     user = {pkgs, ...}: {
