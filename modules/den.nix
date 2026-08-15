@@ -9,7 +9,6 @@
 
 
   den.default = {
-    homeManager.home.stateVersion = "25.11";
 
     nixos = {...}: {
       # Localization
@@ -34,22 +33,15 @@
       };
 
       console.keyMap = "de";
+      
+      home-manager = {
+        # Fix use of unfree packages
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "hm-bak";
+        overwriteBackup = true;
+      };
     };
   };
-  #den.aspects.gaia = { # (6)
-  #
-  #  includes = [ den.batteries.hostname ]; # (7)
-  #  nixos = { pkgs, ... }: {
-  #    imports = [ ./_nixos/configuration.nix ]; # (8)
-  #    environment.systemPackages = [ pkgs.hello ];
-  #  };
-  #};
-  #
-  #den.aspects.bhoesch = { # (9)
-  #
-  #  includes = [ den.batteries.define-user den.batteries.primary-user ]; # (10)
-  #  homeManager = { pkgs, ... }: {
-  #    home.packages = [ pkgs.vim ];
-  #  };
-  #};
+
 }
