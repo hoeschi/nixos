@@ -30,7 +30,7 @@
         extraGroups = [ "video" "render" ];
       };
 
-#      networking.firewall.allowedTCPPorts = [ 11434 ];
+      networking.firewall.allowedTCPPorts = [ 11434 ];
 #
 #      services.open-webui = {
 #        enable = false;  # true = WebUI aktivieren, false = nur API-Endpunkt
