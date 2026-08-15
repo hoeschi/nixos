@@ -12,6 +12,9 @@
       
     ];
 
+
+
+
     nixos = {pkgs, config, ...}: {
 
       imports = [
@@ -67,16 +70,68 @@
         PULSE_COOKIE      = "$HOME/.config/pulse/cookie"; # greift nicht für Steam (eigene libpulse)
         COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
         CLAUDE_CONFIG_DIR = "$HOME/.config/claude";       # undokumentiert; VSCode-Ext. ignoriert sie
-    };
+      };
+
+      xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [
+            xdg-desktop-portal-gtk
+        ];
+        config.common.default = "*";
+      };
+
+      hardware = {
+        graphics = {
+        enable = true;
+        enable32Bit = true;
+        };
+      };
 
 
       services = {
+
         openssh = {
           enable = true;
           listenAddresses = [{ addr = "172.17.0.1"; port = 22; }];
           #settings.PasswordAuthentication = false;
         };
+
+        printing = {
+          enable = true;
+          drivers = with pkgs; [
+              epson-escpr
+              epson-escpr2  # treiber für meinen Espson WF-26xx
+          ];
+        };
+
+        avahi = {
+          enable = true;
+          nssmdns4 = true;
+          openFirewall = true;
+        };
+
       };
+
+      # Enable sound with pipewire.
+      services.pulseaudio.enable = false;
+      security.rtkit.enable = true;
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        # If you want to use JACK applications, uncomment this
+        jack.enable = true;
+
+        # use the example session manager (no others are packaged yet so this is enabled by default,
+        # no need to redefine it in your config for now)
+        #media-session.enable = true;
+      };
+
+      programs.nix-ld = {
+        enable = true;
+      };
+      
 
 
 
