@@ -8,6 +8,7 @@
     home.packages = with pkgs; [
       platformio-core
       avrdude
+      clang-tools
     ];
 
     programs.vscode = {
@@ -18,6 +19,7 @@
           ms-python.python
           ms-azuretools.vscode-containers
 	        shd101wyy.markdown-preview-enhanced	
+          llvm-vs-code-extensions.vscode-clangd
           # platformio.platformio-vscode-ide # doesnt work
           #ms-toolsai.jupyter
           #ms-vscode.cpptools
