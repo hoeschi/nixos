@@ -69,8 +69,8 @@
         RADV_PERFTEST     = "gpl";                        # AMD: Shader-Ruckler reduzieren
         PATH              = [ "$HOME/.local/bin" ];
         PULSE_COOKIE      = "$HOME/.config/pulse/cookie"; # greift nicht für Steam (eigene libpulse)
-        COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
-        CLAUDE_CONFIG_DIR = "$HOME/.config/claude";       # undokumentiert; VSCode-Ext. ignoriert sie
+        #COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
+        #CLAUDE_CONFIG_DIR = "$HOME/.config/claude";       # undokumentiert; VSCode-Ext. ignoriert sie
       };
 
       xdg.portal = {
@@ -83,9 +83,13 @@
 
       hardware = {
         graphics = {
-        enable = true;
-        enable32Bit = true;
+          enable = true;
+          enable32Bit = true;
         };
+        graphics.extraPackages = with pkgs; [
+          libva-vdpau-driver
+          libvdpau-va-gl
+        ];
       };
 
 
@@ -111,6 +115,10 @@
           openFirewall = true;
         };
 
+        ratbagd.enable = true; # mice configuration service(needed for piper)
+        input-remapper.enable = true;
+        mullvad-vpn.enable = true;
+
       };
 
       # Enable sound with pipewire.
@@ -133,7 +141,7 @@
         enable = true;
       };
       
-
+      virtualisation.docker.enable = true; # to enable the docker deamon
 
 
       # This value determines the NixOS release from which the default
