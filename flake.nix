@@ -36,35 +36,41 @@
 
   };
 
-  outputs = { self, nixpkgs, den, home-manager, nix-flatpak, stylix, sops-nix, esp-dev,... } @ inputs:
-  let
-    system = "x86_64-linux";
-  in {
+  outputs = inputs:
+    (inputs.nixpkgs.lib.evalModules {
+      modules = [ (inputs.import-tree ./modules) ];
+      specialArgs.inputs = inputs;
+    }).config.flake;
 
-    nixosConfigurations = {
-
-      # Test-Laptop
-      #echo = nixpkgs.lib.nixosSystem {
-      #  specialArgs = { inherit inputs; };
-      #  modules = [
-      #      ./modules/hosts/echo/configuration.nix
-      #  ];
-      #};
-
-      # Main-Desktop
-      gaia = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-            ./_modules/hosts/gaia/configuration.nix
-            sops-nix.nixosModules.sops
-        ];
-      };
-    };
-
-    devShells.${system} = {
-      esp32 = esp-dev.devShells.${system}.esp-idf-full;
-    };
-
-  };
-  
+#  outputs = { self, nixpkgs, den, home-manager, nix-flatpak, stylix, sops-nix, esp-dev,... } @ inputs:
+#  let
+#    system = "x86_64-linux";
+#  in {
+#
+#    nixosConfigurations = {
+#
+#      # Test-Laptop
+#      #echo = nixpkgs.lib.nixosSystem {
+#      #  specialArgs = { inherit inputs; };
+#      #  modules = [
+#      #      ./modules/hosts/echo/configuration.nix
+#      #  ];
+#      #};
+#
+#      # Main-Desktop
+#      gaia = nixpkgs.lib.nixosSystem {
+#        specialArgs = { inherit inputs; };
+#        modules = [
+#            ./_modules/hosts/gaia/configuration.nix
+#            sops-nix.nixosModules.sops
+#        ];
+#      };
+#      
+#    };
+#
+#    devShells.${system} = {
+#      esp32 = esp-dev.devShells.${system}.esp-idf-full;
+#    };
+#
+#  };
 }
