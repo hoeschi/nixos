@@ -33,6 +33,16 @@
       // (lib.optionalAttrs config.programs.zoxide.enable {cd = "z";});
 
     initContent = ''
+
+      # Wortweise Navigation und Löschen
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+      bindkey "^H" backward-kill-word
+      bindkey "^[[3;5~" kill-word
+
+      # Pfadtrenner nicht als Wortbestandteil behandeln
+      WORDCHARS='*?_[]~&;!#$%^(){}<>'
+
       autoload -Uz vcs_info add-zsh-hook
 
       zstyle ':vcs_info:*' enable git
