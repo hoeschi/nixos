@@ -101,7 +101,7 @@
         openssh = {
           enable = true;
           listenAddresses = [{ addr = "172.17.0.1"; port = 22; }];
-          #settings.PasswordAuthentication = false;
+          settings.PasswordAuthentication = false;
         };
         printing = {
           enable = true;
