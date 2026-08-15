@@ -55,9 +55,10 @@
         #nerd-fonts
       ];
     };
+  };
 
-    den.schema.host.includes = {
-
+  den.schema.host.includes = [
+    {
       # XDG Base Directory Specification – systemweit für alle Sessions.
       # Wird via PAM (/etc/pam/environment) gesetzt, gilt also auch für
       # grafische Logins über SDDM, nicht nur für Login-Shells.
@@ -79,8 +80,7 @@
         "d %h/.local/share  0755 - - -"
         "d %h/.local/state  0755 - - -"
       ];
-
-    };
-  };
+    }
+  ];
 
 }
