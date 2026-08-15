@@ -5,7 +5,7 @@
 {
   den.aspects.system.provides.mounting = {
 
-    nixos = {pkgs, ...}:
+    nixos = {pkgs, config, ...}:
     {
       
       systemd.tmpfiles.rules = [
