@@ -9,6 +9,10 @@
         openocd
       ];
 
+      environment.sessionVariables = {
+        COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
+      };
+
       programs.nix-ld = {
         enable = true;
     
