@@ -1,6 +1,8 @@
 { inputs, den, lib, ... }: 
 {
 
+  flake.den = den;
+
   imports = [ 
     inputs.den.flakeModule 
   ];
@@ -9,7 +11,7 @@
   den.default = {
     homeManager.home.stateVersion = "25.11";
 
-    nixos = {config, ...}: {
+    nixos = {...}: {
       # Localization
       time.timeZone = "Europe/Berlin";
 
