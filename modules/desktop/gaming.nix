@@ -23,6 +23,9 @@
             withOpenASAR = true;
             withVencord = true;
         })
+
+        xivlauncher
+        clonehero
       ];
 
     };
