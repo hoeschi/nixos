@@ -5,7 +5,7 @@
 {
   den.aspects.browser.provides.firefox = {
 
-    nixos = {pkgs, ...}:
+    homeManager = {pkgs, ...}:
     {
 
       programs.firefox = {
@@ -25,6 +25,8 @@
           ];
         };
       };
+
     };
+
   };
 }
