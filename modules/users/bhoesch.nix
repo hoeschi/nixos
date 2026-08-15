@@ -6,9 +6,22 @@
 
       (den.batteries.user-shell "zsh")
 
+      den.aspects.system.provides.sddm
+      den.aspects.system.provides.flatpak
+      den.aspects.system.provides.mounting
+
+      den.aspects.gui.provides.plasma
+
       den.aspects.development.provides.vscode
+      den.aspects.development.provides.git
+      den.aspects.development.provides.docker
+      den.aspects.development.provides.ai
 
       den.aspects.shell.provides.zsh
+      den.aspects.shell.provides.fastfetch
+      den.aspects.shell.provides.kitty
+
+      den.aspects.gaming
 
     ];
 
