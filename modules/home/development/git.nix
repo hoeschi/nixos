@@ -8,6 +8,8 @@
     #userName = "hoeschi";
     #userEmail = "hoeschbj+github@proton.me";
 
+    lfs.enable = true;
+
     settings = {
 
       user = {
@@ -69,6 +71,7 @@
       };
     };
   };
+  home.sessionVariables.LAZYGIT_NEW_DIR_FILE = "${config.xdg.cacheHome}/lazygit/newdir";
 
   home.packages = with pkgs; [
     diff-so-fancy
