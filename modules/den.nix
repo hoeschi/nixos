@@ -1,7 +1,7 @@
-{ inputs, den, lib, ... }: 
+{ inputs, den, ... }: 
 {
 
-  flake.den = den;
+  #flake.den = den;
 
   imports = [ 
     inputs.den.flakeModule 
@@ -54,6 +54,9 @@
         vista-fonts
         #nerd-fonts
       ];
+    };
+
+    den.schema.host.includes = {
 
       # XDG Base Directory Specification – systemweit für alle Sessions.
       # Wird via PAM (/etc/pam/environment) gesetzt, gilt also auch für
@@ -65,7 +68,6 @@
         XDG_STATE_HOME  = "$HOME/.local/state";
         PLATFORMIO_CORE_DIR = "$HOME/.local/share/platformio";
         DOTNET_CLI_HOME     = "$HOME/.local/share/dotnet";
-
       };
 
       # Verzeichnisse deklarativ anlegen, statt sich darauf zu verlassen,
