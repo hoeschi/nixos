@@ -24,6 +24,12 @@
             name = "Hack Nerd Font Mono";
           };
           # serif/sansSerif bleiben auf DejaVu-Default, bis du was Eigenes willst
+
+          sizes = {
+            # terminal = 10.5; # → 14 px im Editor, entspricht deinem alten Wert
+            applications = 10;
+            terminal = 11;
+          };
         };
 
         cursor = {
