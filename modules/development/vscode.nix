@@ -59,6 +59,7 @@
             ms-azuretools.vscode-containers
             shd101wyy.markdown-preview-enhanced	
             llvm-vs-code-extensions.vscode-clangd
+            vscode-extensions.kamadorueda.alejandra
             # platformio.platformio-vscode-ide # doesnt work
             #ms-toolsai.jupyter
             #ms-vscode.cpptools
