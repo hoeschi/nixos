@@ -1,10 +1,6 @@
 {den, ...}: {
   den.aspects.shell.provides.kitty = {
-    homeManager = {
-      pkgs,
-      config,
-      ...
-    }: {
+    homeManager = {config, ...}: {
       programs.kitty = {
         enable = true;
 
