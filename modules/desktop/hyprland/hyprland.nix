@@ -249,6 +249,7 @@
             }
 
             # ======== Browser =============================================
+
             {
               name = "Firefox Rules and setting workspace";
               match.class = "firefox";
@@ -263,6 +264,42 @@
               pin = true;
               size = "20% 20%";
               move = "monitor_w-window_w-20 monitor_h-window_h-20";
+            }
+
+            # == Gaming ====================================================
+
+            {
+              name = "Automatically open Steam-related windows on dedicated launcher workspace";
+              match.class = "^(steam)$";
+              workspace = "5 silent";
+            }
+            #{
+            #  name = "Automatically open Prism launcher (Minecraft) on dedicated launcher workspace";
+            #  match.class = "org.prismlauncher.PrismLauncher";
+            #  workspace = "name:5 silent";
+            #}
+            {
+              name = "Float Steam screenshot manager";
+              match = {
+                class = "^(steam)$";
+                title = "^(Screenshot Manager)$";
+              };
+              float = true;
+            }
+            {
+              name = "Float Steam friends list";
+              match = {
+                class = "^(steam)$";
+                title = "^(Friends List)$";
+              };
+              float = true;
+            }
+            {
+              name = "Steam Games";
+              match.initial_class = "^steam_app_\\d+$";
+              workspace = "10 silent";
+              content = "game";
+              rounding = 0;
             }
 
             # ======== Clipboard =============================================
