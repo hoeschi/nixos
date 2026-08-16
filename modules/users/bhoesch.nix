@@ -10,6 +10,7 @@
       den.aspects.system.provides.mounting
 
       den.aspects.gui.provides.hyprland
+      den.aspects.gui.provides.stylix
 
       den.aspects.development.provides.vscode
       den.aspects.development.provides.git
