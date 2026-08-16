@@ -9,6 +9,8 @@
       den.aspects.system.provides.flatpak
       den.aspects.system.provides.mounting
 
+      den.aspects.gui.provides.hyprland
+
       den.aspects.development.provides.vscode
       den.aspects.development.provides.git
       den.aspects.development.provides.docker
