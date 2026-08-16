@@ -72,6 +72,9 @@
             "editor.detectIndentation" = false;
             "files.autoSave" = "afterDelay";
             "files.autoSaveDelay" = 1000;
+
+            "workbench.tree.indent" = 20;
+            "workbench.tree.renderIndentGuides" = "always";
           };
         };
       };
