@@ -39,6 +39,21 @@ window#waybar > box {
   font-weight: bold;
 }
 
+tooltip {
+  background-color: @base00;
+  border: 1px solid @base02;
+  border-radius: 12px;
+}
+
+tooltip.background {
+  background-color: @base00;
+}
+
+tooltip label {
+  color: @base05;
+  padding: 8px;
+}
+
 #mpris {
   color: @base0E;
 }
@@ -93,4 +108,9 @@ window#waybar > box {
 
 #workspaces button.empty {
   color: @base03;
+}
+
+#custom-power:hover {
+  background-color: @base01;
+  border-radius: 8px;
 }

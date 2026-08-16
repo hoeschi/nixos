@@ -1,4 +1,8 @@
-{den, ...}: {
+{
+  den,
+  lib,
+  ...
+}: {
   den.aspects.gui.provides.hyprland = {
     homeManager = {
       pkgs,
@@ -39,10 +43,10 @@
           modules-left = ["mpris"];
           modules-center = ["hyprland/workspaces"];
           modules-right = [
+            #"custom/cputemp"
             "cpu"
-            "custom/cputemp"
             "memory"
-            "custom/gputemp"
+            #"custom/gputemp"
             "pulseaudio"
             "network"
             "clock"
@@ -53,20 +57,21 @@
           "hyprland/workspaces" = {
             all-outputs = false; # jede Bar nur die Workspaces ihres Monitors
             active-only = false;
-            show-special = true;
+            #show-special = true;
+            move-to-monitor = true;
             format = "{name}";
-            on-click = "activate";
+            #on-click = "activate";
             on-scroll-up = "hyprctl dispatch workspace e-1";
             on-scroll-down = "hyprctl dispatch workspace e+1";
 
             # Muss zu den workspace_rule in hyprland.nix passen
             persistent-workspaces = {
-              "1" = ["DP-2"];
-              "2" = ["DP-2"];
-              "10" = ["DP-2"];
-              "3" = ["HDMI-A-1"];
-              "4" = ["HDMI-A-1"];
-              "5" = ["HDMI-A-1"];
+              #  "1" = ["DP-2"];
+              #  "2" = ["DP-2"];
+              #  "10" = ["DP-2"];
+              #  "3" = ["HDMI-A-1"];
+              #  "4" = ["HDMI-A-1"];
+              #  "5" = ["HDMI-A-1"];
             };
           };
 
@@ -81,8 +86,10 @@
           };
 
           cpu = {
-            format = "󰻠 {usage}%";
-            format-alt = "󰻠 {load}";
+            format = "<span size='140%'>󰻠</span> {usage}%";
+            format-alt = "<span size='140%'>󰻠</span> {load}";
+            #format = "󰻠 {usage}%";
+            #format-alt = "󰻠 {load}";
             interval = 3;
             tooltip = false;
           };
@@ -96,8 +103,8 @@
           };
 
           memory = {
-            format = "󰍛 {percentage}%";
-            format-alt = "󰍛 {used:0.1f}G";
+            format = "<span size='140%'>󰍛</span> {percentage}%";
+            format-alt = "<span size='140%'>󰍛</span> {used:0.1f}G";
             tooltip-format = "{used:0.1f}G von {total:0.1f}G belegt";
             interval = 5;
           };
@@ -122,26 +129,50 @@
               default = ["󰕿" "󰖀" "󰕾"];
             };
             tooltip-format = "{desc}";
-            scroll-step = 5;
+            scroll-step = 2;
             # wpctl kommt mit wireplumber, ist durch services.pipewire da
             on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           };
 
           network = {
-            format-ethernet = "󰈀 {ipaddr}";
-            format-wifi = "󰤨 {essid} ({signalStrength}%)";
-            format-linked = "󰈀 {ifname} (keine IP)";
-            format-disconnected = "󰤭 offline";
-            format-alt = "󰇚 {bandwidthDownBits}  󰕒 {bandwidthUpBits}";
+            format-ethernet = "<span size='140%'>󰈀</span> {ipaddr}";
+            format-wifi = "<span size='140%'>󰤨</span> {essid} ({signalStrength}%)";
+            format-linked = "<span size='140%'>󰈀</span> {ifname} (keine IP)";
+            format-disconnected = "<span size='140%'>󰤭</span> offline";
+            format-alt = "<span size='140%'>󰇚</span> {bandwidthDownBits}  <span size='140%'>󰕒</span> {bandwidthUpBits}";
             tooltip-format = "{ifname} über {gwaddr}";
             interval = 5;
           };
 
           clock = {
-            interval = 30;
-            format = "{:%H:%M  %d.%m.%Y}";
-            tooltip-format = "<tt><small>{calendar}</small></tt>";
-            calendar.mode = "month";
+            interval = 1;
+            format = "{:%H:%M:%S  %d.%m.%Y}";
+            #tooltip-format = "<tt><small>{calendar}</small></tt>";
+            tooltip-format = "\n<span size='9pt'>{calendar}</span>";
+
+            calendar = {
+              mode = "month";
+              mode-mon-col = 3;
+              weeks-pos = "left";
+              on-scroll = 1;
+              on-click-right = "mode";
+
+              format = with config.lib.stylix.colors.withHashtag; {
+                months = "<span color='${base0D}'><b>{}</b></span>";
+                days = "<span color='${base05}'>{}</span>";
+                weeks = "<span color='${base03}'>{}</span>";
+                weekdays = "<span color='${base0A}'><b>{}</b></span>";
+                today = "<span color='${base08}'><b><u>{}</u></b></span>";
+              };
+            };
+
+            actions = {
+              on-click-right = "mode";
+              on-click-forward = "tz_up";
+              on-click-backward = "tz_down";
+              on-scroll-up = "shift_up";
+              on-scroll-down = "shift_down";
+            };
           };
 
           tray = {
