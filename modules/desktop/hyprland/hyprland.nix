@@ -245,7 +245,7 @@
             {
               name = "Opacity of vscode Window";
               match.class = "^(code)$";
-              opacity = "0.9 override 0.7 override";
+              opacity = "0.95 override 0.7 override";
             }
 
             # ======== Browser =============================================
