@@ -33,7 +33,7 @@
 
           sizes = {
             # terminal = 10.5; # → 14 px im Editor, entspricht deinem alten Wert
-            applications = 10;
+            applications = 11;
             terminal = 11;
             popups = 11;
           };
