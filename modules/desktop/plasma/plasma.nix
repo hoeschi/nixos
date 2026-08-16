@@ -16,5 +16,11 @@
         ];
       };
     };
+
+    provides.to-users.homeManager = {...}: {
+      stylix.targets = {
+        kde.enable = false;
+      };
+    };
   };
 }
