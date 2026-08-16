@@ -1,10 +1,10 @@
-{den, ...}:
-{
-
+{den, ...}: {
   den.aspects.development.provides.docker = {
-
-    homeManager = {pkgs, config, ...}:
-    {
+    homeManager = {
+      pkgs,
+      config,
+      ...
+    }: {
       home.packages = with pkgs; [
         docker
         docker-compose

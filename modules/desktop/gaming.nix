@@ -1,9 +1,6 @@
-{den, ...}:
-{
-
+{den, ...}: {
   den.aspects.gaming = {
-
-    nixos = {pkgs, ...}:{
+    nixos = {pkgs, ...}: {
       programs = {
         gamescope.enable = true;
         gamemode.enable = true;
@@ -20,18 +17,16 @@
 
       environment.systemPackages = with pkgs; [
         (discord.override {
-            withOpenASAR = true;
-            withVencord = true;
+          withOpenASAR = true;
+          withVencord = true;
         })
 
         xivlauncher
         clonehero
       ];
-
     };
 
-    homeManager = {pkgs, ...}:
-    {
+    homeManager = {pkgs, ...}: {
       home.packages = with pkgs; [
         #steam
         steam-run
@@ -42,10 +37,11 @@
         ryubing # Switch emulator
 
         (heroic.override {
-          extraPkgs = pkgs': with pkgs'; [
-            gamescope
-            gamemode
-          ];
+          extraPkgs = pkgs':
+            with pkgs'; [
+              gamescope
+              gamemode
+            ];
         })
       ];
 

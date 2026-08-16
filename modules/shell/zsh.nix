@@ -1,12 +1,10 @@
-{
-  den,
-  ...
-}:
-{
+{den, ...}: {
   den.aspects.shell.provides.zsh = {
-
-    homeManager = {pkgs, config,...}:
-    {
+    homeManager = {
+      pkgs,
+      config,
+      ...
+    }: {
       programs.zsh = {
         enable = true;
         autocd = true;
@@ -26,14 +24,13 @@
           expireDuplicatesFirst = true;
         };
 
-        shellAliases =
-          {
-            ls = "eza --icons -l";
-            v = "nvim";
-            vim = "nvim";
-            rebuild-switch = "nixos-rebuild switch --flake ~/nixos --sudo";
-            rebuild-switch-upgrade = "nix flake update --flake ~/nixos && nixos-rebuild switch --flake ~/nixos --sudo";
-          };
+        shellAliases = {
+          ls = "eza --icons -l";
+          v = "nvim";
+          vim = "nvim";
+          rebuild-switch = "nixos-rebuild switch --flake ~/nixos --sudo";
+          rebuild-switch-upgrade = "nix flake update --flake ~/nixos && nixos-rebuild switch --flake ~/nixos --sudo";
+        };
 
         initContent = ''
 

@@ -1,49 +1,46 @@
-{den, ...}:
-{
-
+{den, ...}: {
   den.aspects.development.provides.vscode = {
-
-    nixos = {pkgs, ...}:{
+    nixos = {pkgs, ...}: {
       services.udev.packages = with pkgs; [
         platformio-core.udev
         openocd
       ];
 
       environment.sessionVariables = {
-        COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
+        COPILOT_HOME = "$HOME/.config/copilot"; # undokumentiert, kann per VSCode-Update wegfallen
       };
 
       programs.nix-ld = {
         enable = true;
-    
+
         # Ggf. zusätzliche Libs für den ARM-Toolchain
         libraries = with pkgs; [
-            stdenv.cc.cc.lib
-            zlib
-            libusb1
-            libxcb
-            icu
+          stdenv.cc.cc.lib
+          zlib
+          libusb1
+          libxcb
+          icu
 
-            fontconfig
-            freetype
-            libGL
-            libX11
-            libXext
-            libICE
-            libSM
-            libXi
-            libXrender
-            libXrandr
-            libXcursor
-            libXinerama
-            libxkbcommon
+          fontconfig
+          freetype
+          libGL
+          libX11
+          libXext
+          libICE
+          libSM
+          libXi
+          libXrender
+          libXrandr
+          libXcursor
+          libXinerama
+          libxkbcommon
 
-            gnutls
+          gnutls
         ];
       };
     };
 
-    homeManager = {pkgs, ...}:{
+    homeManager = {pkgs, ...}: {
       home.packages = with pkgs; [
         platformio-core
         avrdude
@@ -51,15 +48,14 @@
       ];
 
       programs.vscode = {
-        
         enable = true;
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             ms-python.python
             ms-azuretools.vscode-containers
-            shd101wyy.markdown-preview-enhanced	
+            shd101wyy.markdown-preview-enhanced
             llvm-vs-code-extensions.vscode-clangd
-            vscode-extensions.kamadorueda.alejandra
+            kamadorueda.alejandra
             # platformio.platformio-vscode-ide # doesnt work
             #ms-toolsai.jupyter
             #ms-vscode.cpptools
@@ -80,7 +76,5 @@
         };
       };
     };
-
   };
-
 }

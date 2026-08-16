@@ -1,15 +1,11 @@
-{
-  den,
-  ...
-}:
-{
+{den, ...}: {
   den.aspects.shell.provides.kitty = {
-
-    homeManager = {pkgs, config,...}:
-    {
-      
+    homeManager = {
+      pkgs,
+      config,
+      ...
+    }: {
       programs.kitty = {
-
         enable = true;
 
         shellIntegration = {

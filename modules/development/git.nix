@@ -1,13 +1,11 @@
-{den, ...}:
-{
-
+{den, ...}: {
   den.aspects.development.provides.git = {
-
-    homeManager = {pkgs, config, ...}:
-    {
-
+    homeManager = {
+      pkgs,
+      config,
+      ...
+    }: {
       programs.git = {
-
         enable = true;
         #userName = "hoeschi";
         #userEmail = "hoeschbj+github@proton.me";
@@ -15,13 +13,10 @@
         lfs.enable = true;
 
         settings = {
-
           user = {
             name = "hoeschi";
             email = "hoeschbj+github@proton.me";
-
           };
-
 
           core.editor = "nvim";
           pull.rebase = false;
@@ -60,9 +55,9 @@
             showIcons = true;
             theme = {
               lightTheme = false;
-              activeBorderColor = [ "green" "bold" ];
-              inactiveBorderColor = [ "white" ];
-              selectedLineBgColor = [ "blue" ];
+              activeBorderColor = ["green" "bold"];
+              inactiveBorderColor = ["white"];
+              selectedLineBgColor = ["blue"];
             };
           };
           git = {
@@ -80,8 +75,6 @@
       home.packages = with pkgs; [
         diff-so-fancy
       ];
-
     };
-
   };
 }

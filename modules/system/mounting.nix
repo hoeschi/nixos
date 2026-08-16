@@ -1,13 +1,10 @@
-{
-  den,
-  ...
-}:
-{
+{den, ...}: {
   den.aspects.system.provides.mounting = {
-
-    nixos = {pkgs, config, ...}:
-    {
-      
+    nixos = {
+      pkgs,
+      config,
+      ...
+    }: {
       systemd.tmpfiles.rules = [
         "d /home/bhoesch/NAS 0755 bhoesch users -"
         "d /home/bhoesch/NAS/Bjarnes_Datenkerker 0755 bhoesch users -"
@@ -20,8 +17,8 @@
           "credentials=/etc/samba/nas-credentials"
           "uid=${toString config.users.users.bhoesch.uid}"
           #"gid=${toString config.users.users.bhoesch.gid}"
-          "file_mode=0644"   # Dateien: rw für Besitzer, r für andere
-          "dir_mode=0755"    # Ordner: rwx für Besitzer, rx für andere
+          "file_mode=0644" # Dateien: rw für Besitzer, r für andere
+          "dir_mode=0755" # Ordner: rwx für Besitzer, rx für andere
           "iocharset=utf8"
           "_netdev"
           "nofail"
@@ -29,7 +26,6 @@
           "x-systemd.idle-timeout=600s"
         ];
       };
-
 
       fileSystems."/home/bhoesch/NAS/Jellyfin" = {
         device = "192.168.178.137:/mnt/Storage_HDD/Jellyfin";
@@ -46,7 +42,6 @@
           "x-systemd.idle-timeout=600"
         ];
       };
-
     };
   };
 }

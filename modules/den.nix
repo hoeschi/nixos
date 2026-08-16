@@ -1,15 +1,15 @@
-{ inputs, den, ... }: 
 {
-
+  inputs,
+  den,
+  ...
+}: {
   #flake.den = den;
 
-  imports = [ 
-    inputs.den.flakeModule 
+  imports = [
+    inputs.den.flakeModule
   ];
 
-
   den.default = {
-
     nixos = {pkgs, ...}: {
       # Localization
       time.timeZone = "Europe/Berlin";
@@ -33,7 +33,7 @@
       };
 
       console.keyMap = "de";
-      
+
       home-manager = {
         # Fix use of unfree packages
         useGlobalPkgs = true;
@@ -64,12 +64,12 @@
         # Wird via PAM (/etc/pam/environment) gesetzt, gilt also auch für
         # grafische Logins über SDDM, nicht nur für Login-Shells.
         environment.sessionVariables = {
-          XDG_CACHE_HOME  = "$HOME/.cache";
+          XDG_CACHE_HOME = "$HOME/.cache";
           XDG_CONFIG_HOME = "$HOME/.config";
-          XDG_DATA_HOME   = "$HOME/.local/share";
-          XDG_STATE_HOME  = "$HOME/.local/state";
+          XDG_DATA_HOME = "$HOME/.local/share";
+          XDG_STATE_HOME = "$HOME/.local/state";
           PLATFORMIO_CORE_DIR = "$HOME/.local/share/platformio";
-          DOTNET_CLI_HOME     = "$HOME/.local/share/dotnet";
+          DOTNET_CLI_HOME = "$HOME/.local/share/dotnet";
         };
 
         # Verzeichnisse deklarativ anlegen, statt sich darauf zu verlassen,
@@ -84,5 +84,4 @@
       };
     }
   ];
-
 }

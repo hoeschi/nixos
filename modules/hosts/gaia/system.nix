@@ -1,27 +1,30 @@
-{den, inputs, ...}: 
 {
+  den,
+  inputs,
+  ...
+}: {
   den.hosts.x86_64-linux.gaia = {
     description = "Main PC (Tower)";
     users.bhoesch.classes = ["homeManager"];
   };
 
   den.aspects.gaia = {
-
-    includes = [ 
+    includes = [
       den.batteries.hostname
 
       den.aspects.system.provides.sddm
       den.aspects.gui.provides.plasma
-      
     ];
 
-
-    nixos = {pkgs, config, ...}: {
-
+    nixos = {
+      pkgs,
+      config,
+      ...
+    }: {
       imports = [
         ./_hardware.nix
       ];
-    
+
       # Bootloader.
       boot.loader = {
         systemd-boot.enable = false;
@@ -40,8 +43,8 @@
         channel.enable = false;
 
         settings = {
-            experimental-features = [ "nix-command" "flakes" ];
-            auto-optimise-store = true;
+          experimental-features = ["nix-command" "flakes"];
+          auto-optimise-store = true;
         };
 
         # Garbage collection settings
@@ -51,27 +54,26 @@
           options = "--delete-older-than 4d";
         };
       };
-    
+
       nixpkgs = {
         config.allowUnfree = true;
         overlays = [
-          inputs.nur.overlays.default   # <-- hinzufügen
+          inputs.nur.overlays.default # <-- hinzufügen
         ];
       };
 
       networking = {
         firewall = {
-          trustedInterfaces = [ "docker0" ];
+          trustedInterfaces = ["docker0"];
         };
         # Enable networking
         networkmanager.enable = true;
       };
 
-      
       environment.sessionVariables = {
-        RADV_PERFTEST     = "gpl";                        # AMD: Shader-Ruckler reduzieren
-        PATH              = [ "$HOME/.local/bin" ];
-        PULSE_COOKIE      = "$HOME/.config/pulse/cookie"; # greift nicht für Steam (eigene libpulse)
+        RADV_PERFTEST = "gpl"; # AMD: Shader-Ruckler reduzieren
+        PATH = ["$HOME/.local/bin"];
+        PULSE_COOKIE = "$HOME/.config/pulse/cookie"; # greift nicht für Steam (eigene libpulse)
         #COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
         #CLAUDE_CONFIG_DIR = "$HOME/.config/claude";       # undokumentiert; VSCode-Ext. ignoriert sie
       };
@@ -79,7 +81,7 @@
       xdg.portal = {
         enable = true;
         extraPortals = with pkgs; [
-            xdg-desktop-portal-gtk
+          xdg-desktop-portal-gtk
         ];
         config.common.default = "*";
       };
@@ -95,19 +97,22 @@
         ];
       };
 
-
       services = {
-
         openssh = {
           enable = true;
-          listenAddresses = [{ addr = "172.17.0.1"; port = 22; }];
+          listenAddresses = [
+            {
+              addr = "172.17.0.1";
+              port = 22;
+            }
+          ];
           settings.PasswordAuthentication = false;
         };
         printing = {
           enable = true;
           drivers = with pkgs; [
-              epson-escpr
-              epson-escpr2  # treiber für meinen Espson WF-26xx
+            epson-escpr
+            epson-escpr2 # treiber für meinen Espson WF-26xx
           ];
         };
         avahi = {
@@ -140,11 +145,10 @@
       programs.nix-ld = {
         enable = true;
       };
-      
+
       virtualisation.docker.enable = true; # to enable the docker deamon
 
       environment.systemPackages = with pkgs; [
-
         #home-manager
         nix-output-monitor
 
@@ -212,12 +216,10 @@
 
         gnutls
 
-        sops 
+        sops
         age
         openssl
-
       ];
-
 
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions

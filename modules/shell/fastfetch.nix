@@ -1,12 +1,10 @@
-{
-  den,
-  ...
-}:
-{
+{den, ...}: {
   den.aspects.shell.provides.fastfetch = {
-
-    homeManager = {pkgs, config,...}:
-    {
+    homeManager = {
+      pkgs,
+      config,
+      ...
+    }: {
       programs.fastfetch = {
         enable = true;
         settings = {

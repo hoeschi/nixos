@@ -1,20 +1,11 @@
-{
-  den,
-  ...
-}:
-{
+{den, ...}: {
   den.aspects.system.provides.sddm = {
-
-    nixos = {pkgs, ...}:
-    {
+    nixos = {pkgs, ...}: {
       services = {
-
         xserver.enable = true;
 
         displayManager = {
-
           sddm = {
-
             enable = true;
 
             autoNumlock = true;
@@ -24,6 +15,5 @@
         };
       };
     };
-
   };
 }
