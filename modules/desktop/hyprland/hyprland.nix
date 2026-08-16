@@ -126,8 +126,8 @@
             };
 
             misc = {
-              #disable_hyprland_logo = true; # Disable default Anime girl background
-              #disable_splash_rendering = true; # Disable splash text
+              disable_hyprland_logo = true; # Disable default Anime girl background
+              disable_splash_rendering = true; # Disable splash text
               animate_manual_resizes = true; # Play a small animation when resizing manually
               on_focus_under_fullscreen = 2; # Disable current fullscreen when opening a new window
               vrr = 3; # Allow adaptive sync for fullscreen apps with `video` or `game` content type
