@@ -5,8 +5,8 @@
   ...
 }: {
   den.aspects.gui.provides.stylix = {
-    homeManager = {pkgs, ...}: {
-      imports = [inputs.stylix.homeModules.stylix];
+    nixos = {pkgs, ...}: {
+      imports = [inputs.stylix.nixosModules.stylix];
 
       stylix = {
         enable = true;
@@ -32,6 +32,8 @@
 
         targets = {
           kde.enable = false; # siehe unten
+          firefox.profileNames = ["default"];
+          qt.platform = "qtct";
         };
       };
     };
