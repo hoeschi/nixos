@@ -15,6 +15,7 @@
       den.aspects.system.provides.sddm
       den.aspects.gui.provides.plasma
       #den.aspects.gui.provides.hyprland
+      den.aspects.gui.provides.stylix
     ];
 
     nixos = {
