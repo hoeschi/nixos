@@ -16,6 +16,11 @@
           ];
         };
       };
+
+      stylix.targets = {
+        #firefox.profileNames = lib.attrNames (config.programs.firefox.profiles or {});
+        firefox.profileNames = ["default"];
+      };
     };
   };
 }
