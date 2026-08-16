@@ -66,7 +66,7 @@
             #ms-vscode.cmake-tools-themes
           ];
           userSettings = {
-            "editor.fontSize" = 14;
+            #"editor.fontSize" = 14; # conflicts with stylix
             "editor.tabSize" = 4;
             "editor.insertSpaces" = true;
             "editor.detectIndentation" = false;
