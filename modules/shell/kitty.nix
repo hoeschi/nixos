@@ -58,7 +58,7 @@
 
           cursor = "#c0caf5";
 
-          #hide_window_decorations = "titlebar-only";
+          hide_window_decorations = "titlebar-only";
           macos_option_as_alt = false;
           macos_titlebar_color = "background";
 
