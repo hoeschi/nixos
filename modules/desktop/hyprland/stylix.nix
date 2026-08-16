@@ -5,7 +5,11 @@
   ...
 }: {
   den.aspects.gui.provides.stylix = {
-    nixos = {pkgs, ...}: {
+    nixos = {
+      pkgs,
+      lib,
+      ...
+    }: {
       imports = [inputs.stylix.nixosModules.stylix];
 
       stylix = {
@@ -28,12 +32,10 @@
           size = 24;
         };
 
-        opacity.terminal = 0.9;
-
         targets = {
-          kde.enable = false; # siehe unten
-          firefox.profileNames = ["default"];
-          qt.platform = "qtct";
+          #kde.enable = false; # siehe unten
+          #firefox.profileNames = ["default"];
+          qt.platform = lib.mkForce "qtct";
         };
       };
     };
