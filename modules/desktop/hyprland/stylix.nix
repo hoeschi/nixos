@@ -39,7 +39,7 @@
           };
         };
 
-        opacity.popups = 0.9;
+        #opacity.popups = 0.9;
 
         cursor = {
           package = pkgs.bibata-cursors;
