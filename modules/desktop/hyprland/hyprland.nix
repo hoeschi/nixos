@@ -25,6 +25,8 @@
 
         awww # wallpaper demon
         rofi # programm starter | rofi-wayland merged into rofi
+
+        wl-clipboard # for Screenshot functionality
       ];
 
       services.hyprpolkitagent.enable = true;
@@ -47,7 +49,7 @@
           monitor = [
             {
               output = monitor0;
-              mode = "2560x1440@143.68";
+              mode = "2560x1440@143.86";
               position = "0x0";
               scale = 1;
             }
@@ -115,6 +117,7 @@
               kb_model = ""; # Model (e.g. pc86, logitech_base, ...)
               kb_options = ""; # Options (japanese, euro sign position, ...)
               kb_rules = "";
+              numlock_by_default = true;
 
               # Mouse
               sensitivity = 0; # Keep mouse sensitivity at default (-1.0 to 1.0)
@@ -127,7 +130,7 @@
               #disable_splash_rendering = true; # Disable splash text
               animate_manual_resizes = true; # Play a small animation when resizing manually
               on_focus_under_fullscreen = 2; # Disable current fullscreen when opening a new window
-              #vrr = 3; # Allow adaptive sync for fullscreen apps with `video` or `game` content type
+              vrr = 3; # Allow adaptive sync for fullscreen apps with `video` or `game` content type
             };
 
             render = {
@@ -239,6 +242,36 @@
               match.class = "^(kitty)$";
               opacity = "0.9 override 0.7 override";
             }
+            {
+              name = "Opacity of vscode Window";
+              match.class = "^(code)$";
+              opacity = "0.9 override 0.7 override";
+            }
+
+            # ======== Browser =============================================
+            {
+              name = "Firefox Rules and setting workspace";
+              match.class = "firefox";
+              workspace = "3";
+            }
+            {
+              name = "Firefox Picture-in-Picture, floating";
+              #match.initial_class = "firefox";
+              match.initial_title = "Picture-in-Picture";
+              #workspace = "3";
+              float = true;
+              pin = true;
+              size = "20% 20%";
+              move = "monitor_w-window_w-20 monitor_h-window_h-20";
+            }
+
+            # ======== Clipboard =============================================
+            {
+              name = "Float clipboard manager";
+              match.class = "^(com.github.hluk.copyq)$";
+              float = true;
+              size = "800 600";
+            }
           ];
 
           bind = let
@@ -264,7 +297,9 @@
             #(bind "${mod} + S" (exec "$HOME/.config/hypr/scripts/screenshot.sh area"))
             #(bind "${mod} + N" (exec "$(eww get EWW_CONFIG_DIR)/scripts/toggle_popup sidebar"))
             (bind "${mod} + SHIFT + M" "hl.dsp.exit()") # exit Hyprland
-            (bind "${mod} + SHIFT + R" (exec "hyprctl reload"))
+            #(bind "${mod} + SHIFT + R" (exec "hyprctl reload"))
+            (bind "${mod} + SHIFT + S" (exec "grim -g \\\"$(slurp)\\\" - | wl-copy")) # Screenshot
+            (bind "${mod} + V" (exec "copyq menu"))
 
             # Move to workspace
             (bind "${mod} + 1" (mvws "1"))
@@ -292,8 +327,8 @@
 
             (bind "${mod} + mouse:272" "hl.dsp.window.drag()")
             (bind "${mod} + mouse:273" "hl.dsp.window.resize()")
-            (bind "${mod} + V" "hl.dsp.window.float({})") # TODO: Check
-            (bind "${mod} + C" "hl.dsp.window.close()")
+            (bind "${mod} + H" "hl.dsp.window.float({})") # TODO: Check
+            (bind "${mod} + Q" "hl.dsp.window.close()")
 
             (bind "${mod} + F" (fs "maximized"))
             (bind "${mod} + T" (fs "fullscreen"))
