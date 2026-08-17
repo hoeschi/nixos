@@ -17,14 +17,12 @@
 
     homeManager = {pkgs, ...}: {
       home.packages = with pkgs; [
-        dunst
         libnotify
 
         grim
         slurp
 
-        awww # wallpaper demon
-        rofi # programm starter | rofi-wayland merged into rofi
+        
 
         wl-clipboard # for Screenshot functionality
       ];
@@ -73,7 +71,7 @@
               "hyprland.start"
               (lib.generators.mkLuaInline ''
                 function()
-                  hl.exec_cmd("awww-daemon")              -- Wallpaper daemon
+                  --hl.exec_cmd("awww-daemon")              -- Wallpaper daemon
                   --hl.exec_cmd("quickshell --daemonize")   -- Desktop shell (widgets, overlays, ...)
                   --hl.exec_cmd("copyq --start-server")     -- Clipboard manager (wird über copyq.nix gestartet)
                 end
@@ -338,13 +336,13 @@
             (bind "${mod} + RETURN" (exec "kitty"))
             (bind "${mod} + Z" (exec "kitty -e rmpc"))
             #(bind "${mod} + SPACE" (exec "$HOME/.config/rofi/scripts/launcher.sh"))
-            (bind "${mod} + SPACE" (exec "rofi -show drun"))
+            (bind "${mod} + SPACE" (exec "menu-launcher"))
             #(bind "${mod} + S" (exec "$HOME/.config/hypr/scripts/screenshot.sh area"))
             #(bind "${mod} + N" (exec "$(eww get EWW_CONFIG_DIR)/scripts/toggle_popup sidebar"))
             (bind "${mod} + SHIFT + M" "hl.dsp.exit()") # exit Hyprland
             #(bind "${mod} + SHIFT + R" (exec "hyprctl reload"))
             (bind "${mod} + SHIFT + S" (exec "grim -g \\\"$(slurp)\\\" - | wl-copy")) # Screenshot
-            (bind "${mod} + V" (exec "copyq menu"))
+            (bind "${mod} + V" (exec "menu-clipboard"))
 
             # Move to workspace
             (bind "${mod} + 1" (mvws "1"))
