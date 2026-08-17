@@ -6,10 +6,10 @@
 
       (den.batteries.user-shell "zsh")
 
+      den.aspects.gui.provides.hyprland-shell-classic
+
       den.aspects.system.provides.flatpak
       den.aspects.system.provides.mounting
-
-      den.aspects.gui.provides.hyprland
 
       den.aspects.development.provides.vscode
       den.aspects.development.provides.git
