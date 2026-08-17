@@ -16,8 +16,10 @@
         enable = true;
 
         # Passt zu dem, was du aktuell in kitty.nix hardcodiert hast
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
-        #polarity = "dark";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+        #catppuccin-mocha
+        #tokyo-night-dark
+        polarity = "dark";
 
         fonts = {
           monospace = {
