@@ -11,48 +11,41 @@
       services.power-profiles-daemon.enable = true;
     };
 
-    homeManager = {config, ...}: let
-      c = config.lib.stylix.colors.withHashtag;
-      # base16 -> Noctalia-Rollen. Stylix bleibt einzige Farbquelle,
-      # Noctalia bekommt sie als Build-Artefakt.
-      #      palette = {
-      #        mPrimary = c.base0D; # Blau, wie der Waybar-Akzent
-      #        mOnPrimary = c.base00;
-      #        mSecondary = c.base0E; # Magenta
-      #        mOnSecondary = c.base00;
-      #        mTertiary = c.base0A; # Gelb
-      #        mOnTertiary = c.base00;
-      #        mError = c.base08; # Rot
-      #        mOnError = c.base00;
-      #        mSurface = c.base00;
-      #        mOnSurface = c.base05;
-      #        mSurfaceVariant = c.base01;
-      #        mOnSurfaceVariant = c.base04;
-      #        mOutline = c.base03;
-      #        mShadow = c.base00;
-      #        mHover = c.base02;
-      #        mOnHover = c.base05;
-      #      };
-    in {
+    homeManager = {config, ...}: {
       imports = [inputs.noctalia.homeModules.default];
 
       programs.noctalia = {
         enable = true;
         systemd.enable = true;
 
-        settings.theme = {
-          #mode = "dark";
-          source = "custom";
-          custom_palette = "stylix"; # Dateiname ohne .json
+        settings = {
+          shell = {
+            launch_apps_as_systemd_services = true;
+            panel.transparency_mode = "glass";
+            lang = "en_US";
+          };
 
-          # Stylix behält die App-Configs. Explizit aus, damit ein
-          # GUI-Klick das nicht unbemerkt umdreht.
-          templates = {
-            enable_builtin_templates = false;
-            enable_community_templates = false;
-            enable_user_templates = false;
-            builtin_ids = [];
-            community_ids = [];
+          theme = {
+            source = "custom";
+            custom_palette = "stylix"; # Dateiname ohne .json
+            templates = {
+              enable_builtin_templates = false;
+              enable_community_templates = false;
+
+              builtin_ids = [];
+              community_ids = [];
+            };
+          };
+          services = {
+            calendar = {
+              enabled = true;
+            };
+          };
+
+          control_center = {
+            calendar = {
+              show_week_numbers = true;
+            };
           };
         };
       };
