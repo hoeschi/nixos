@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  den.aspects.gui.provides.hyprland = {
+  den.aspects.gui.provides.waybar = {
     homeManager = {
       pkgs,
       config,
