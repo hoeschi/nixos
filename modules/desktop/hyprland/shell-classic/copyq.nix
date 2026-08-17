@@ -1,5 +1,5 @@
 {den, ...}: {
-  den.aspects.gui.provides.hyprland = {
+  den.aspects.gui.provides.copyq = {
     homeManager = {
       services.copyq = {
         enable = true;

@@ -1,5 +1,5 @@
 {den, ...}: {
-  den.aspects.gui.provides.hyprland = {
+  den.aspects.gui.provides.dunst = {
     homeManager = {
       services.dunst = {
         enable = true;
