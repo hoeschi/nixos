@@ -1,0 +1,22 @@
+{den, ...}: {
+  den.aspects.gui.provides.hyprland-shell-classic = {
+    includes = [
+      den.aspects.gui.provides.hyprland
+
+      den.aspects.gui.provides.waybar
+      den.aspects.gui.provides.dunst
+      den.aspects.gui.provides.copyq
+    ];
+
+    homeManager = {pkgs, ...}: {
+      home.packages = with pkgs; [
+        rofi # programm starter | rofi-wayland merged into rofi
+        dunst
+        awww # wallpaper demon
+
+        (writeShellScriptBin "menu-launcher" "exec rofi -show drun")
+        (writeShellScriptBin "menu-clipboard" "exec copyq menu")
+      ];
+    };
+  };
+}
