@@ -6,6 +6,7 @@
       den.aspects.gui.provides.waybar
       den.aspects.gui.provides.dunst
       den.aspects.gui.provides.copyq
+      den.aspects.gui.provides.hyprshell
     ];
 
     homeManager = {pkgs, ...}: {

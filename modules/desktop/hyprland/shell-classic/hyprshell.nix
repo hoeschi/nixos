@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  den.aspects.gui.provides.hyprland = {
+  den.aspects.gui.provides.hyprshell = {
     homeManager = {config, ...}: {
       services.hyprshell = {
         enable = true;
