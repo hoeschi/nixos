@@ -11,7 +11,6 @@
     homeManager = {pkgs, ...}: {
       home.packages = with pkgs; [
         rofi # programm starter | rofi-wayland merged into rofi
-        dunst
         awww # wallpaper demon
 
         (writeShellScriptBin "menu-launcher" "exec rofi -show drun")
