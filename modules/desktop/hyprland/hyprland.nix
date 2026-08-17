@@ -126,7 +126,7 @@
             };
 
             misc = {
-              disable_hyprland_logo = true; # Disable default Anime girl background
+              #disable_hyprland_logo = true; # Disable default Anime girl background
               disable_splash_rendering = true; # Disable splash text
               animate_manual_resizes = true; # Play a small animation when resizing manually
               on_focus_under_fullscreen = 2; # Disable current fullscreen when opening a new window
@@ -209,29 +209,35 @@
             {
               workspace = 1;
               monitor = monitor0;
+              persistent = true;
             }
             {
               workspace = 2;
               monitor = monitor0;
+              persistent = true;
             }
             {
               workspace = 3;
               monitor = monitor1;
+              persistent = true;
               #default_name = "Browser";
             }
             {
               workspace = 4;
               monitor = monitor1;
+              persistent = true;
               #default_name = "Multimedia";
             }
             {
               workspace = 5;
               monitor = monitor1;
+              persistent = true;
               #default_name = "Launchers";
             }
             {
               workspace = 10;
               monitor = monitor0;
+              persistent = true;
               #default_name = "Games";
             }
           ];
@@ -254,6 +260,7 @@
               name = "Firefox Rules and setting workspace";
               match.class = "firefox";
               workspace = "3";
+              #opacity = "0.95";
             }
             {
               name = "Firefox Picture-in-Picture, floating";
@@ -350,6 +357,18 @@
             (bind "${mod} + 9" (mvws "9"))
             (bind "${mod} + 0" (mvws "10"))
 
+            # Move to workspace with numpad
+            (bind "${mod} + code:87" (mvws "1"))
+            (bind "${mod} + code:88" (mvws "2"))
+            (bind "${mod} + code:89" (mvws "3"))
+            (bind "${mod} + code:83" (mvws "4"))
+            (bind "${mod} + code:84" (mvws "5"))
+            (bind "${mod} + code:85" (mvws "6"))
+            (bind "${mod} + code:79" (mvws "7"))
+            (bind "${mod} + code:80" (mvws "8"))
+            (bind "${mod} + code:81" (mvws "9"))
+            (bind "${mod} + code:90" (mvws "10"))
+
             # Move current window to different workspace
             (bind "${mod} + SHIFT + 1" (mvwd "1"))
             (bind "${mod} + SHIFT + 2" (mvwd "2"))
@@ -400,6 +419,8 @@
             #(bind "XF86AudioNext" (exec "playerctl -p spotify,mpd next"))
             #(bind "XF86AudioPrev" (exec "playerctl -p spotify,mpd previous"))
 
+            (bind "XF86AudioRaiseVolume" (exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+"))
+            (bind "XF86AudioLowerVolume" (exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%-"))
             #(bind "XF86AudioRaiseVolume" (exec "playerctl -p spotify,mpd volume 0.05+"))
             #(bind "XF86AudioLowerVolume" (exec "playerctl -p spotify,mpd volume 0.05-"))
 
