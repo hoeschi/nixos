@@ -7,8 +7,8 @@
 
     homeManager = {pkgs, ...}: {
       home.packages = with pkgs; [
-        (writeShellScriptBin "menu-launcher" "exec noctalia msg launcher toggle")
-        (writeShellScriptBin "menu-clipboard" "exec noctalia msg clipboard toggle")
+        (writeShellScriptBin "menu-launcher" "exec noctalia msg panel-toggle launcher")
+        (writeShellScriptBin "menu-clipboard" "exec noctalia msg panel-toggle clipboard")
       ];
     };
   };
