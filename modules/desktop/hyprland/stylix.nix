@@ -17,7 +17,7 @@
 
         # Passt zu dem, was du aktuell in kitty.nix hardcodiert hast
         base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
-        polarity = "dark";
+        #polarity = "dark";
 
         fonts = {
           monospace = {
@@ -39,7 +39,10 @@
           };
         };
 
-        #opacity.popups = 0.9;
+        opacity = {
+          #popups = 0.9;
+          #applications = 0.9;
+        };
 
         cursor = {
           package = pkgs.bibata-cursors;
