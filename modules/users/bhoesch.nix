@@ -81,11 +81,12 @@
 
           desktop = "${config.home.homeDirectory}/Desktop";
           download = "${config.home.homeDirectory}/Downloads";
-          documents = "${config.home.homeDirectory}/Dokumente";
-          music = "${config.home.homeDirectory}/Musik";
-          pictures = "${config.home.homeDirectory}/Bilder";
+          documents = "${config.home.homeDirectory}/Documents";
+          music = "${config.home.homeDirectory}/Music";
+          pictures = "${config.home.homeDirectory}/Pictures";
           videos = "${config.home.homeDirectory}/Videos";
-          templates = "${config.home.homeDirectory}/Vorlagen";
+          projects = "${config.home.homeDirectory}/Projects";
+          templates = "${config.home.homeDirectory}/Templates";
           publicShare = "${config.home.homeDirectory}/Öffentlich";
         };
 
