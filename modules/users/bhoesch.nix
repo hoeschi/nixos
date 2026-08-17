@@ -6,7 +6,8 @@
 
       (den.batteries.user-shell "zsh")
 
-      den.aspects.gui.provides.hyprland-shell-classic
+      #den.aspects.gui.provides.hyprland-shell-classic
+      den.aspects.gui.provides.hyprland-shell-noctalia
 
       den.aspects.system.provides.flatpak
       den.aspects.system.provides.mounting
