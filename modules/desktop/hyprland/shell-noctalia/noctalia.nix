@@ -1,6 +1,7 @@
 {
   den,
   inputs,
+  lib,
   ...
 }: {
   den.aspects.gui.provides.noctalia = {
@@ -40,7 +41,7 @@
         systemd.enable = true;
 
         settings.theme = {
-          mode = "dark";
+          #mode = "dark";
           source = "custom";
           custom_palette = "stylix"; # Dateiname ohne .json
 
