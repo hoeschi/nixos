@@ -33,6 +33,11 @@
     };
 
     esp-dev.url = "github:mirrexagon/nixpkgs-esp-dev";
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -40,11 +45,6 @@
       modules = [(inputs.import-tree ./modules)];
       specialArgs.inputs = inputs;
     }).config.flake;
-
-  noctalia = {
-    url = "github:noctalia-dev/noctalia";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
 
   #  outputs = { self, nixpkgs, den, home-manager, nix-flatpak, stylix, sops-nix, esp-dev,... } @ inputs:
   #  let
