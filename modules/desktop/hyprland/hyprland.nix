@@ -22,8 +22,6 @@
         grim
         slurp
 
-        
-
         wl-clipboard # for Screenshot functionality
       ];
 
@@ -71,9 +69,7 @@
               "hyprland.start"
               (lib.generators.mkLuaInline ''
                 function()
-                  --hl.exec_cmd("awww-daemon")              -- Wallpaper daemon
-                  --hl.exec_cmd("quickshell --daemonize")   -- Desktop shell (widgets, overlays, ...)
-                  --hl.exec_cmd("copyq --start-server")     -- Clipboard manager (wird über copyq.nix gestartet)
+
                 end
               '')
             ];
