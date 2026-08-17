@@ -306,6 +306,7 @@
               match.initial_class = "^steam_app_\\d+$";
               workspace = "10 silent";
               content = "game";
+              float = true;
               rounding = 0;
             }
 
@@ -415,7 +416,7 @@
             # Audio controls
             # NOTE: Close spotify to control mpd
 
-            #(bind "XF86AudioPlay" (exec "playerctl -p spotify,mpd play-pause"))
+            (bind "XF86AudioPlay" (exec "playerctl play-pause"))
             #(bind "XF86AudioNext" (exec "playerctl -p spotify,mpd next"))
             #(bind "XF86AudioPrev" (exec "playerctl -p spotify,mpd previous"))
 
