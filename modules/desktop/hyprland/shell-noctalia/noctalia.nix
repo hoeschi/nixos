@@ -47,6 +47,14 @@
               show_week_numbers = true;
             };
           };
+
+          wallpaper = {
+            enabled = true;
+            fill_mode = "fit";
+            directory = "${config.xdg.userDirs.pictures}/Wallpapers";
+            default.path = "${config.xdg.userDirs.pictures}/Wallpapers/default.png";
+            transition_on_startup = true;
+          };
         };
       };
 
