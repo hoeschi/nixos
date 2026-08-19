@@ -8,7 +8,7 @@
 
       # Compositors – beliebig kombinierbar, Auswahl am SDDM-Greeter
       den.aspects.gui.provides.hyprland
-      #den.aspects.gui.provides.niri
+      den.aspects.gui.provides.niri
       #den.aspects.gui.provides.plasma
 
       # Desktop-Shell (nur eine gleichzeitig, siehe unten)
