@@ -6,8 +6,14 @@
 
       (den.batteries.user-shell "zsh")
 
-      #den.aspects.gui.provides.hyprland-shell-classic
-      den.aspects.gui.provides.hyprland-shell-noctalia
+      # Compositors – beliebig kombinierbar, Auswahl am SDDM-Greeter
+      den.aspects.gui.provides.hyprland
+      #den.aspects.gui.provides.niri
+      #den.aspects.gui.provides.plasma
+
+      # Desktop-Shell (nur eine gleichzeitig, siehe unten)
+      den.aspects.gui.provides.noctalia-shell
+      #den.aspects.gui.provides.classic-shell
 
       den.aspects.system.provides.flatpak
       den.aspects.system.provides.mounting

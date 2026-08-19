@@ -17,7 +17,7 @@
       };
     };
 
-    provides.to-users.homeManager = {...}: {
+    homeManager = {...}: {
       stylix.targets = {
         kde.enable = false;
       };

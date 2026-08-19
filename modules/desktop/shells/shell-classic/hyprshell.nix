@@ -6,7 +6,7 @@
   den.aspects.gui.provides.hyprshell = {
     homeManager = {config, ...}: {
       services.hyprshell = {
-        enable = true;
+        enable = config.wayland.windowManager.hyprland.enable;
 
         settings = {
           version = 4;

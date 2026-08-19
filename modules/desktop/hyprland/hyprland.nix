@@ -16,16 +16,12 @@
     };
 
     homeManager = {pkgs, ...}: {
-      home.packages = with pkgs; [
-        libnotify
-
-        grim
-        slurp
-
-        wl-clipboard # for Screenshot functionality
-      ];
-
       services.hyprpolkitagent.enable = true;
+
+      # Bei parallel installierten Compositors würde der Agent sonst in
+      # jeder graphical-session starten, auch unter niri oder Plasma.
+      systemd.user.services.hyprpolkitagent.Install.WantedBy =
+        lib.mkForce ["hyprland-session.target"];
 
       wayland.windowManager.hyprland = {
         enable = true; # enable Hyprland
