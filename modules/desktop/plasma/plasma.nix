@@ -19,7 +19,7 @@
 
     homeManager = {...}: {
       stylix.targets = {
-        kde.enable = false;
+        #kde.enable = false;
       };
     };
   };

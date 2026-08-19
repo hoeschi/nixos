@@ -12,7 +12,7 @@
       #den.aspects.gui.provides.plasma
 
       # Desktop-Shell (nur eine gleichzeitig, siehe unten)
-      den.aspects.gui.provides.noctalia-shell
+      den.aspects.gui.provides.noctalia
       #den.aspects.gui.provides.classic-shell
 
       den.aspects.system.provides.flatpak
