@@ -54,7 +54,7 @@
 
         #autoEnable = false; # disables auto enable stylix for valid targets
         targets = {
-          #kde.enable = false; # siehe unten
+          #kde.enable = false; # cant set this iwhen plasma is disabled
           #firefox.profileNames = ["default"];
           qt.platform = lib.mkForce "qtct";
         };
