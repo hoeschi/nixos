@@ -155,39 +155,47 @@
         })
 
         # ======== nur wenn niri aktiv ist =============================
-        # `programs.niri` existiert auf HM-Seite ausschließlich dann, wenn
-        # nixosModules.niri importiert wurde – also wenn der Aspekt drin ist.
-        (lib.optionalAttrs (options.programs ? niri) {
-          programs.niri.settings = {
+        (lib.mkIf config.wayland.windowManager.niri.enable {
+          wayland.windowManager.niri.settings = {
             # Ohne das funktionieren Notification-Actions und Fenster-
             # Aktivierung aus Noctalia heraus nicht.
-            debug.honor-xdg-activation-with-invalid-serial = [];
+            debug."honor-xdg-activation-with-invalid-serial" = [];
 
             # Wallpaper bleibt stehen, statt mit den Workspaces zu scrollen.
             layout.background-color = "transparent";
-            overview.workspace-shadow.enable = false;
-
-            layer-rules = [
-              {
-                matches = [{namespace = "^noctalia-wallpaper";}];
-                place-within-backdrop = true;
-              }
-            ];
-
-            window-rules = [
-              {
-                matches = [{app-id = "^dev\\.noctalia\\.Noctalia$";}];
-                open-floating = true;
-                default-column-width.fixed = 1080;
-                default-window-height.fixed = 920;
-              }
-            ];
+            overview.workspace-shadow.off = [];
 
             binds = {
-              "Mod+S".action.spawn-sh = "noctalia msg panel-toggle control-center";
-              "Mod+Shift+Comma".action.spawn-sh = "noctalia msg settings-toggle";
-              "Alt+Tab".action.spawn-sh = "noctalia msg window-switcher";
+              "Mod+S"."spawn-sh" = "noctalia msg panel-toggle control-center";
+              "Mod+Shift+Comma"."spawn-sh" = "noctalia msg settings-toggle";
+              "Alt+Tab"."spawn-sh" = "noctalia msg window-switcher";
             };
+
+            _children = [
+              {
+                layer-rule = {
+                  match._props.namespace = "^noctalia-wallpaper";
+                  place-within-backdrop = true;
+                };
+              }
+              {
+                layer-rule = {
+                  match._props.namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
+                  background-effect = {
+                    blur = true;
+                    xray = true;
+                  };
+                };
+              }
+              {
+                window-rule = {
+                  match._props.app-id = "^dev\\.noctalia\\.Noctalia$";
+                  open-floating = true;
+                  default-column-width.fixed = 1080;
+                  default-window-height.fixed = 920;
+                };
+              }
+            ];
           };
         })
       ];
