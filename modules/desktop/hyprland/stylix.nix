@@ -52,6 +52,7 @@
           size = 24;
         };
 
+        #autoEnable = false; # disables auto enable stylix for valid targets
         targets = {
           #kde.enable = false; # siehe unten
           #firefox.profileNames = ["default"];
