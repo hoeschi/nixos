@@ -5,7 +5,7 @@
 }: {
   den.aspects.gui.provides.hyprland = {
     includes = [
-      den.aspects.shell.provides.kitty
+      den.aspects.gui.provides.wayland-base
     ];
 
     nixos = {
