@@ -57,7 +57,6 @@
           #kde.enable = false; # siehe unten
           #firefox.profileNames = ["default"];
           qt.platform = lib.mkForce "qtct";
-          kde.enable = false;
         };
       };
     };

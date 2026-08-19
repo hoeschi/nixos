@@ -15,7 +15,7 @@
       };
     };
 
-    homeManager = {pkgs, ...}: {
+    homeManager = {...}: {
       services.hyprpolkitagent.enable = true;
 
       # Bei parallel installierten Compositors würde der Agent sonst in
