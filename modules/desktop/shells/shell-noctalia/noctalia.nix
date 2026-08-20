@@ -47,10 +47,11 @@
                 wallpaper_scheme = "m3-content";
 
                 templates = {
-                  enable_builtin_templates = config.theming.colorSource == "wallpaper";
-                  builtin_ids = ["kitty" "gtk3" "gtk4" "qt" "hyprland" "niri"];
-                  enable_community_templates = config.theming.colorSource == "wallpaper";
-                  community_ids = ["vscode"];
+                  enable_builtin_templates = config.theming.noctaliaTemplates.builtin != [];
+                  builtin_ids = config.theming.noctaliaTemplates.builtin;
+
+                  enable_community_templates = config.theming.noctaliaTemplates.community != [];
+                  community_ids = config.theming.noctaliaTemplates.community;
                 };
               };
 
