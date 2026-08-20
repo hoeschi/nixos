@@ -52,6 +52,8 @@
           size = 24;
         };
 
+        # Targets werden nicht mehr automatisch aktiviert.
+        # NixOS-Ebene hier, Home-Manager-Ebene in theming.nix.
         autoEnable = false;
 
         targets = {
@@ -65,18 +67,9 @@
         };
       };
 
-      # autoEnable vererbt sich nicht zuverlässig in die HM-Konfiguration,
-      # deshalb hier explizit. fontconfig/font-packages existieren auf beiden
-      # Ebenen und werden auf beiden gebraucht.
+      # autoEnable vererbt sich nicht zuverlässig in die HM-Konfiguration.
       home-manager.sharedModules = [
-        {
-          stylix.autoEnable = false;
-
-          stylix.targets = {
-            fontconfig.enable = true;
-            font-packages.enable = true;
-          };
-        }
+        {stylix.autoEnable = false;}
       ];
     };
   };

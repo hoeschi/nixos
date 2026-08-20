@@ -1,6 +1,7 @@
 {den, ...}: {
   den.aspects.gui.provides.wayland-base = {
     includes = [
+      den.aspects.gui.provides.theming
       den.aspects.shell.provides.kitty
     ];
 
