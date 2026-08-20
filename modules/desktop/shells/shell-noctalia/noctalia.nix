@@ -114,6 +114,14 @@
                   end = ["media" "tray" "notifications" "clipboard" "network" "bluetooth" "volume" "brightness" "battery" "control-center" "session"];
                 };
               };
+
+              widget = {
+                workspaces = {
+                  show_labels = true; # false = unlabeled pills (Focus Hint: app icon only)
+                  label_source = "name"; # id | name
+                  max_label_chars = 6; # truncate long workspace names (e.g. "VESKTOP" → "VE")
+                };
+              };
             };
           };
         }
