@@ -8,7 +8,6 @@
       ...
     }: {
       stylix.targets.kitty.enable = config.theming.colorSource == "stylix";
-      theming.noctaliaTemplates.builtin = ["kitty"];
 
       programs.kitty = {
         enable = true;
@@ -54,16 +53,6 @@
 
           window_border_width = 0;
           window_margin_width = 15;
-
-          active_border_color = "#3d59a1";
-          inactive_border_color = "#101014";
-
-          active_tab_foreground = "#000";
-          active_tab_background = "#eee";
-          inactive_tab_foreground = "#444";
-          inactive_tab_background = "#999";
-
-          cursor = "#c0caf5";
 
           hide_window_decorations = "titlebar-only";
           macos_option_as_alt = false;

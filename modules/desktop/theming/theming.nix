@@ -30,24 +30,6 @@
           default = osConfig.theming.colorSource;
           description = "Spiegel der NixOS-Option, damit App-Module nicht osConfig lesen müssen.";
         };
-
-        noctaliaTemplates = {
-          builtin = lib.mkOption {
-            type = lib.types.listOf lib.types.str;
-            default = [];
-            description = ''
-              Noctalia-Template-IDs, eingetragen vom jeweiligen App-Modul.
-              Umweg über diese Option, weil programs.noctalia in Profilen
-              ohne Noctalia nicht existiert.
-            '';
-          };
-
-          community = lib.mkOption {
-            type = lib.types.listOf lib.types.str;
-            default = [];
-            description = "Wie builtin, für Community-Templates.";
-          };
-        };
       };
     };
   };

@@ -48,10 +48,19 @@
 
                 templates = {
                   enable_builtin_templates = config.theming.colorSource == "wallpaper";
-                  builtin_ids = config.theming.noctaliaTemplates.builtin;
+                  builtin_ids = [
+                    "kitty" # shell/kitty.nix
+                    #"gtk3" # desktop/base.nix
+                    #"gtk4" # desktop/base.nix
+                    #"qt" # desktop/base.nix
+                    #"hyprland" # desktop/hyprland/hyprland.nix
+                    "niri" # desktop/niri/niri.nix
+                  ];
 
                   enable_community_templates = config.theming.colorSource == "wallpaper";
-                  community_ids = config.theming.noctaliaTemplates.community;
+                  community_ids = [
+                    #"vscode" # development/vscode.nix
+                  ];
                 };
               };
 

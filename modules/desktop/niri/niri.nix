@@ -37,6 +37,9 @@
         # Units kommen systemweit aus programs.niri (systemd.packages).
         # package bleibt gesetzt, sonst fällt checkConfig weg.
         systemd.enable = false;
+        # Die Validierung läuft in der Sandbox und scheitert dort am Include
+        # auf ~/.config/niri/noctalia.kdl, das erst zur Laufzeit entsteht.
+        checkConfig = config.theming.colorSource != "wallpaper";
 
         settings = {
           prefer-no-csd = [];
@@ -76,12 +79,16 @@
             };
 
             focus-ring.off = [];
-            border = with config.lib.stylix.colors.withHashtag; {
-              on = [];
-              width = 2;
-              active-color = base0D;
-              inactive-color = base03;
-            };
+            border =
+              {
+                on = [];
+                width = 2;
+              }
+              // lib.optionalAttrs (config.theming.colorSource == "stylix")
+              (with config.lib.stylix.colors.withHashtag; {
+                active-color = base0D;
+                inactive-color = base03;
+              });
 
             default-column-width.proportion = 0.5;
             preset-column-widths._children = [
@@ -377,6 +384,14 @@
                 default-window-height.fixed = 600;
               };
             }
+
+            # Farbwerte für focus-ring, border, shadow, tab-indicator und
+            # insert-hint. Wird von Noctalia bei jedem Wallpaper-Wechsel neu
+            # gerendert; der post_hook des Templates findet diese Zeile vor
+            # und lässt config.kdl in Ruhe.
+            (lib.mkIf (config.theming.colorSource == "wallpaper") {
+              include = ["${config.xdg.configHome}/niri/noctalia.kdl"];
+            })
           ];
         };
       };
