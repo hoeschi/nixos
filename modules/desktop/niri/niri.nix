@@ -52,8 +52,12 @@
               numlock = [];
               xkb.layout = "de";
             };
-            mouse.accel-profile = "flat";
-            focus-follows-mouse = [];
+            mouse = {
+              accel-profile = "adaptive";
+              accel-speed = 0.0;
+            };
+            #focus-follows-mouse = [];
+            warp-mouse-to-focus = [];
           };
 
           cursor = {
@@ -126,7 +130,9 @@
             "Mod+Shift+Down"."move-window-down-or-to-workspace-down" = [];
 
             "Mod+Comma"."consume-or-expel-window-left" = [];
-            "Mod+Period"."expel-window-from-column" = [];
+            "Mod+period"."consume-or-expel-window-right" = [];
+            #"Mod+Shift+Comma"."expel-window-from-column" = [];
+            #"Mod+Shift+period"."expel-window-from-column" = [];
             #"Mod+R"."switch-preset-column-width" = [];
             "Mod+C"."center-column" = [];
             "Mod+W"."toggle-column-tabbed-display" = [];
@@ -258,6 +264,12 @@
             }
             {
               workspace = {
+                _args = ["AP2"];
+                open-on-output = "DP-2";
+              };
+            }
+            {
+              workspace = {
                 _args = ["Games"];
                 open-on-output = "DP-2";
               };
@@ -268,7 +280,7 @@
             {
               window-rule = {
                 match._props.is-active = false;
-                opacity = 0.95;
+                #opacity = 0.95;
                 draw-border-with-background = false;
               };
             }
