@@ -47,10 +47,10 @@
                 wallpaper_scheme = "m3-content";
 
                 templates = {
-                  enable_builtin_templates = config.theming.noctaliaTemplates.builtin != [];
+                  enable_builtin_templates = config.theming.colorSource == "wallpaper";
                   builtin_ids = config.theming.noctaliaTemplates.builtin;
 
-                  enable_community_templates = config.theming.noctaliaTemplates.community != [];
+                  enable_community_templates = config.theming.colorSource == "wallpaper";
                   community_ids = config.theming.noctaliaTemplates.community;
                 };
               };

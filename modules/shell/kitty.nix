@@ -1,8 +1,21 @@
 {den, ...}: {
   den.aspects.shell.provides.kitty = {
-    homeManager = {config, ...}: {
+    includes = [den.aspects.gui.provides.theming];
+
+    homeManager = {
+      config,
+      lib,
+      ...
+    }: {
+      stylix.targets.kitty.enable = config.theming.colorSource == "stylix";
+      theming.noctaliaTemplates.builtin = ["kitty"];
+
       programs.kitty = {
         enable = true;
+
+        extraConfig = lib.mkIf (config.theming.colorSource == "wallpaper") ''
+          include themes/noctalia.conf
+        '';
 
         shellIntegration = {
           #mode = "no-cursor";
@@ -10,12 +23,6 @@
         };
 
         settings = {
-          foreground = "#a9b1d6";
-          background = "#1a1b26";
-
-          selection_foreground = "none";
-          selection_background = "#28344a";
-
           cursor_shape = "beam";
 
           cursor_blink_interval = 0.5;

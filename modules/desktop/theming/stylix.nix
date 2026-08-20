@@ -8,6 +8,7 @@
     nixos = {
       pkgs,
       lib,
+      config,
       ...
     }: {
       imports = [inputs.stylix.nixosModules.stylix];
@@ -54,7 +55,7 @@
 
         # Targets werden nicht mehr automatisch aktiviert.
         # NixOS-Ebene hier, Home-Manager-Ebene in theming.nix.
-        autoEnable = false;
+        autoEnable = config.theming.colorSource == "stylix";
 
         targets = {
           console.enable = true;
@@ -67,9 +68,15 @@
         };
       };
 
-      # autoEnable vererbt sich nicht zuverlässig in die HM-Konfiguration.
       home-manager.sharedModules = [
-        {stylix.autoEnable = false;}
+        {
+          stylix.autoEnable = config.theming.colorSource == "stylix";
+
+          stylix.targets = {
+            fontconfig.enable = true;
+            font-packages.enable = true;
+          };
+        }
       ];
     };
   };

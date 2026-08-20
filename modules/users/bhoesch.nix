@@ -51,11 +51,6 @@
     }: {
       #programs.home-manager.enable = true;
 
-      theming = {
-        colorSource = "wallpaper";
-        noctaliaOwns = [];
-      };
-
       home = {
         username = "bhoesch";
         homeDirectory = "/home/bhoesch";

@@ -25,6 +25,10 @@
         ./_hardware.nix
       ];
 
+      theming = {
+        colorSource = "wallpaper"; # wallpaper or stylix
+      };
+
       # Bootloader.
       boot.loader = {
         systemd-boot.enable = false;
