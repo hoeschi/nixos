@@ -52,13 +52,32 @@
           size = 24;
         };
 
-        #autoEnable = false; # disables auto enable stylix for valid targets
+        autoEnable = false;
+
         targets = {
-          #kde.enable = false; # cant set this iwhen plasma is disabled
-          #firefox.profileNames = ["default"];
+          console.enable = true;
+          fontconfig.enable = true;
+          font-packages.enable = true;
+          grub.enable = true;
+
+          qt.enable = true;
           qt.platform = lib.mkForce "qtct";
         };
       };
+
+      # autoEnable vererbt sich nicht zuverlässig in die HM-Konfiguration,
+      # deshalb hier explizit. fontconfig/font-packages existieren auf beiden
+      # Ebenen und werden auf beiden gebraucht.
+      home-manager.sharedModules = [
+        {
+          stylix.autoEnable = false;
+
+          stylix.targets = {
+            fontconfig.enable = true;
+            font-packages.enable = true;
+          };
+        }
+      ];
     };
   };
 }

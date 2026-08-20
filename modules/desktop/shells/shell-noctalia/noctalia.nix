@@ -38,16 +38,22 @@
               };
 
               theme = {
-                source = "custom";
-                custom_palette = "stylix"; # Dateiname ohne .json
-                templates = {
-                  enable_builtin_templates = false;
-                  enable_community_templates = false;
+                mode = "dark";
+                source =
+                  if config.theming.colorSource == "stylix"
+                  then "custom"
+                  else "wallpaper";
+                custom_palette = "stylix";
+                wallpaper_scheme = "m3-content";
 
-                  builtin_ids = [];
-                  community_ids = [];
+                templates = {
+                  enable_builtin_templates = config.theming.colorSource == "wallpaper";
+                  builtin_ids = ["kitty" "gtk3" "gtk4" "qt" "hyprland" "niri"];
+                  enable_community_templates = config.theming.colorSource == "wallpaper";
+                  community_ids = ["vscode"];
                 };
               };
+
               services = {
                 calendar = {
                   enabled = true;
