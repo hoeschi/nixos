@@ -12,7 +12,11 @@
         slurp
 
         wl-clipboard # for Screenshot functionality
+
+        playerctl
       ];
+
+      services.playerctld.enable = true;
     };
   };
 }
