@@ -30,6 +30,10 @@
       wayland.windowManager.niri = {
         enable = true;
 
+        # Portale kommen aus programs.niri auf NixOS-Ebene, sonst kollidiert
+        # xdg.portal.enable mit dem Hyprland-Modul (false vs. true).
+        portalPackage = null;
+
         # Units kommen systemweit aus programs.niri (systemd.packages).
         # package bleibt gesetzt, sonst fällt checkConfig weg.
         systemd.enable = false;
@@ -60,7 +64,12 @@
           layout = {
             gaps = 10;
             center-focused-column = "never";
-            empty-workspace-above-first = [];
+            #empty-workspace-above-first = [];
+
+            struts = {
+              left = 48;
+              right = 48;
+            };
 
             focus-ring.off = [];
             border = with config.lib.stylix.colors.withHashtag; {
@@ -96,9 +105,15 @@
             "Mod+V"."spawn" = ["menu-clipboard"];
             "Mod+Q"."close-window" = [];
             "Mod+Shift+M"."quit" = [];
-            "Mod+Shift+Slash"."show-hotkey-overlay" = [];
+            "Mod+Shift+ssharp"."show-hotkey-overlay" = [];
             "Mod+Shift+S"."screenshot" = [];
             "Mod+I"."spawn-sh" = "notify-send 'Active window:' \"$(niri msg focused-window)\"";
+
+            "Mod+plus"."set-column-width" = "+10%";
+            "Mod+minus"."set-column-width" = "-10%";
+            "Mod+Shift+plus"."set-window-height" = "+10%";
+            "Mod+Shift+minus"."set-window-height" = "-10%";
+            "Mod+Ctrl+R"."reset-window-height" = [];
 
             # Links/rechts sind Spalten, hoch/runter Fenster in der Spalte
             "Mod+Left"."focus-column-left" = [];
@@ -112,7 +127,7 @@
 
             "Mod+Comma"."consume-or-expel-window-left" = [];
             "Mod+Period"."expel-window-from-column" = [];
-            "Mod+R"."switch-preset-column-width" = [];
+            #"Mod+R"."switch-preset-column-width" = [];
             "Mod+C"."center-column" = [];
             "Mod+W"."toggle-column-tabbed-display" = [];
 
@@ -162,6 +177,16 @@
             "Mod+KP_Home"."focus-workspace" = 7;
             "Mod+KP_Up"."focus-workspace" = 8;
             "Mod+KP_Prior"."focus-workspace" = 9;
+
+            "Mod+Shift+KP_End"."move-column-to-workspace" = 1;
+            "Mod+Shift+KP_Down"."move-column-to-workspace" = 2;
+            "Mod+Shift+KP_Next"."move-column-to-workspace" = 3;
+            "Mod+Shift+KP_Left"."move-column-to-workspace" = 4;
+            "Mod+Shift+KP_Begin"."move-column-to-workspace" = 5;
+            "Mod+Shift+KP_Right"."move-column-to-workspace" = 6;
+            "Mod+Shift+KP_Home"."move-column-to-workspace" = 7;
+            "Mod+Shift+KP_Up"."move-column-to-workspace" = 8;
+            "Mod+Shift+KP_Prior"."move-column-to-workspace" = 9;
 
             "Mod+WheelScrollUp"."focus-column-left" = [];
             "Mod+WheelScrollDown"."focus-column-right" = [];
@@ -215,28 +240,44 @@
             # Persistent und an einen Output gebunden. Alles weitere dynamisch.
             {
               workspace = {
-                _args = ["browser"];
+                _args = ["Browser"];
                 open-on-output = "HDMI-A-1";
               };
             }
             {
               workspace = {
-                _args = ["media"];
+                _args = ["Media"];
                 open-on-output = "HDMI-A-1";
               };
             }
             {
               workspace = {
-                _args = ["games"];
+                _args = ["AP1"];
+                open-on-output = "DP-2";
+              };
+            }
+            {
+              workspace = {
+                _args = ["Games"];
                 open-on-output = "DP-2";
               };
             }
 
             # ======== Window-Rules =====================================
+            #Make inactive windows semitransparent.
+            {
+              window-rule = {
+                match._props.is-active = false;
+                opacity = 0.95;
+                draw-border-with-background = false;
+              };
+            }
+
             {
               window-rule = {
                 geometry-corner-radius = 5;
                 clip-to-geometry = true;
+                draw-border-with-background = false;
               };
             }
             {
@@ -252,10 +293,12 @@
                 opacity = 0.95;
               };
             }
+
+            ############ Browser ############
             {
               window-rule = {
                 match._props.app-id = "^firefox$";
-                open-on-workspace = "browser";
+                open-on-workspace = "Browser";
               };
             }
             {
@@ -269,10 +312,20 @@
                 };
               };
             }
+
+            ############ Media ############
+            {
+              window-rule = {
+                match._props.app-id = "^discord$";
+                open-on-workspace = "Media";
+              };
+            }
+
+            ############ Games ############
             {
               window-rule = {
                 match._props.app-id = "^steam$";
-                open-on-workspace = "games";
+                open-on-workspace = "Games";
               };
             }
             {
@@ -297,12 +350,13 @@
             {
               window-rule = {
                 match._props.app-id = "^steam_app_\\d+$";
-                open-on-workspace = "games";
+                open-on-workspace = "Games";
                 open-fullscreen = true;
                 variable-refresh-rate = true;
                 geometry-corner-radius = 0;
               };
             }
+
             {
               window-rule = {
                 match._props.app-id = "^com\\.github\\.hluk\\.copyq$";
