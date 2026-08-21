@@ -1,6 +1,10 @@
 {den, ...}: {
   den.aspects.browser.provides.firefox = {
-    homeManager = {pkgs, ...}: {
+    homeManager = {
+      pkgs,
+      config,
+      ...
+    }: {
       programs.firefox = {
         enable = true;
         configPath = ".mozilla/firefox";
@@ -24,6 +28,7 @@
 
       stylix.targets.firefox = {
         #firefox.profileNames = lib.attrNames (config.programs.firefox.profiles or {});
+        enable = config.theming.colorSource == "stylix";
         profileNames = ["default"];
         colorTheme.enable = true;
       };
