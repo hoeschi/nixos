@@ -51,13 +51,45 @@
     homeManager = {
       pkgs,
       config,
+      lib,
       ...
-    }: {
+    }: let
+      # Muss zum output_path des Community-Templates passen:
+      # ~/.vscode/extensions/noctalia.noctaliatheme-0.0.5/themes/…
+      # Abgleich bei Problemen:
+      # ~/.local/state/noctalia/community-templates/vscode/template.toml
+      noctaliaThemeVersion = "0.0.5";
+
+      noctaliaTheme = pkgs.vscode-utils.extensionFromVscodeMarketplace {
+        name = "noctaliatheme";
+        publisher = "noctalia";
+        version = noctaliaThemeVersion;
+        sha256 = "sha256-aTSk3yYkBw5GrD0CbRL2wo3SlBffzBTDe1pZoZa1URQ=";
+      };
+
+      extDir = "${config.home.homeDirectory}/.vscode/extensions/noctalia.noctaliatheme-${noctaliaThemeVersion}";
+    in {
+      stylix.targets.vscode.enable = config.theming.colorSource == "stylix";
+
       home.packages = with pkgs; [
         platformio-core
         avrdude
         clang-tools
       ];
+
+      # Die Extension läuft bewusst nicht über profiles.default.extensions:
+      # das Noctalia-Template schreibt sein Ergebnis in das Extension-
+      # Verzeichnis selbst, was bei einem Store-Symlink fehlschlägt. Zudem
+      # erwartet es den Namen mit Versionssuffix, den HM nicht vergibt.
+      # Deshalb eine beschreibbare Kopie unter dem passenden Namen.
+      home.activation.noctaliaVscodeTheme =
+        lib.hm.dag.entryAfter ["writeBoundary"]
+        (lib.optionalString (config.theming.colorSource == "wallpaper") ''
+          run rm -rf ${lib.escapeShellArg extDir}
+          run mkdir -p ${lib.escapeShellArg extDir}
+          run cp -rT ${noctaliaTheme}/share/vscode/extensions/noctalia.noctaliatheme ${lib.escapeShellArg extDir}
+          run chmod -R u+w ${lib.escapeShellArg extDir}
+        '');
 
       programs.vscode = {
         enable = true;
@@ -77,14 +109,7 @@
             #ms-vscode.cmake-tools-extension-pack
             #ms-vscode.cmake-tools-themes
           ];
-          #++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          # {
-          #  name = "noctaliatheme";
-          # publisher = "noctalia";
-          #version = "0.0.5";
-          #sha256 = "sha256-aTSk3yYkBw5GrD0CbRL2wo3SlBffzBTDe1pZoZa1URQ=";
-          #}
-          #];
+
           userSettings = lib.mkMerge [
             {
               #"editor.fontSize" = 14; # conflicts with stylix
