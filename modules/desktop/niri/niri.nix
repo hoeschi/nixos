@@ -324,6 +324,7 @@
               window-rule = {
                 match._props.title = "^Picture-in-Picture$";
                 open-floating = true;
+                open-focused = false;
                 default-floating-position._props = {
                   x = 20;
                   y = 20;
@@ -370,9 +371,10 @@
               window-rule = {
                 match._props.app-id = "^steam_app_\\d+$";
                 open-on-workspace = "Games";
-                open-fullscreen = true;
+                #open-fullscreen = true;
                 variable-refresh-rate = true;
                 geometry-corner-radius = 0;
+                clip-to-geometry = false;
               };
             }
 
