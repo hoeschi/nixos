@@ -44,7 +44,7 @@
                   then "custom"
                   else "wallpaper";
                 custom_palette = "stylix";
-                wallpaper_scheme = "m3-content";
+                wallpaper_scheme = "vibrant";
 
                 templates = {
                   enable_builtin_templates = config.theming.colorSource == "wallpaper";
