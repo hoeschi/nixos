@@ -59,7 +59,9 @@
 
                   enable_community_templates = config.theming.colorSource == "wallpaper";
                   community_ids = [
-                    #"vscode" # development/vscode.nix
+                    # vscode_code / vscode_codium / antigravity_ide getrennt.
+                    "vscode_code" # development/vscode.nix
+                    "vscode"
                   ];
                 };
               };

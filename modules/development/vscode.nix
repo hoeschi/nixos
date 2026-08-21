@@ -1,6 +1,14 @@
-{den, ...}: {
+{
+  den,
+  lib,
+  ...
+}: {
   den.aspects.development.provides.vscode = {
-    nixos = {pkgs, ...}: {
+    nixos = {
+      pkgs,
+      config,
+      ...
+    }: {
       services.udev.packages = with pkgs; [
         platformio-core.udev
         openocd
@@ -40,7 +48,11 @@
       };
     };
 
-    homeManager = {pkgs, ...}: {
+    homeManager = {
+      pkgs,
+      config,
+      ...
+    }: {
       home.packages = with pkgs; [
         platformio-core
         avrdude
@@ -65,17 +77,33 @@
             #ms-vscode.cmake-tools-extension-pack
             #ms-vscode.cmake-tools-themes
           ];
-          userSettings = {
-            #"editor.fontSize" = 14; # conflicts with stylix
-            "editor.tabSize" = 4;
-            "editor.insertSpaces" = true;
-            "editor.detectIndentation" = false;
-            "files.autoSave" = "afterDelay";
-            "files.autoSaveDelay" = 1000;
+          #++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          # {
+          #  name = "noctaliatheme";
+          # publisher = "noctalia";
+          #version = "0.0.5";
+          #sha256 = "sha256-aTSk3yYkBw5GrD0CbRL2wo3SlBffzBTDe1pZoZa1URQ=";
+          #}
+          #];
+          userSettings = lib.mkMerge [
+            {
+              #"editor.fontSize" = 14; # conflicts with stylix
+              "editor.tabSize" = 4;
+              "editor.insertSpaces" = true;
+              "editor.detectIndentation" = false;
+              "files.autoSave" = "afterDelay";
+              "files.autoSaveDelay" = 1000;
 
-            "workbench.tree.indent" = 20;
-            "workbench.tree.renderIndentGuides" = "always";
-          };
+              "workbench.tree.indent" = 20;
+              "workbench.tree.renderIndentGuides" = "always";
+            }
+
+            (lib.mkIf (config.theming.colorSource == "wallpaper") {
+              "workbench.colorTheme" = "NoctaliaTheme";
+              "editor.fontFamily" = config.stylix.fonts.monospace.name;
+              "editor.fontSize" = config.stylix.fonts.sizes.terminal * 4.0 / 3;
+            })
+          ];
         };
       };
     };
