@@ -318,6 +318,7 @@
               window-rule = {
                 match._props.app-id = "^firefox$";
                 open-on-workspace = "Browser";
+                default-column-width = {proportion = 0.5;};
               };
             }
             {
