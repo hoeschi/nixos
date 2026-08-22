@@ -1,7 +1,10 @@
 {den, ...}: {
   den.aspects.email = {
     homeManager = {pkgs, ...}: {
-      services.protonmail-bridge.enable = true;
+      home.packages = with pkgs; [
+        protonmail-bridge-gui
+      ];
+      #services.protonmail-bridge.enable = true;
 
       programs.thunderbird = {
         enable = true;
