@@ -22,6 +22,7 @@
       den.aspects.development.provides.git
       den.aspects.development.provides.docker
       den.aspects.development.provides.ai
+      den.aspects.development.provides.qmk
 
       den.aspects.shell.provides.zsh
       den.aspects.shell.provides.fastfetch
@@ -38,6 +39,8 @@
       uid = 1000;
       extraGroups = [
         "docker"
+        "plugdev"
+        "dialout"
       ];
       packages = with pkgs; [
         kdePackages.kate

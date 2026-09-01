@@ -94,11 +94,12 @@
         graphics = {
           enable = true;
           enable32Bit = true;
+
+          extraPackages = with pkgs; [
+            libva-vdpau-driver
+            libvdpau-va-gl
+          ];
         };
-        graphics.extraPackages = with pkgs; [
-          libva-vdpau-driver
-          libvdpau-va-gl
-        ];
       };
 
       services = {
@@ -155,6 +156,8 @@
       environment.systemPackages = with pkgs; [
         #home-manager
         nix-output-monitor
+
+        kdePackages.dolphin
 
         wineWow64Packages.stable
         winetricks
@@ -225,6 +228,9 @@
         openssl
 
         btop
+
+        staruml
+        #gaphorixos
       ];
 
       # This value determines the NixOS release from which the default
