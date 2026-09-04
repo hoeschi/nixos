@@ -1,6 +1,10 @@
 {den, ...}: {
   den.aspects.development.provides.ai = {
     nixos = {pkgs, ...}: {
+      environment.systemPackages = with pkgs; [
+        lmstudio
+      ];
+
       environment.sessionVariables = {
         CLAUDE_CONFIG_DIR = "$HOME/.config/claude"; # undokumentiert; VSCode-Ext. ignoriert sie
       };
