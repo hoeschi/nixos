@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    nixpkgs-avr.url = "github:nixos/nixpkgs?ref=nixos-24.11"; #for gcc8 for qmk devshell
+
+    xwayland-satellite-0_8_1.url = "github:Supreeeme/xwayland-satellite/v0.8.1";
+
     import-tree.url = "github:denful/import-tree";
     den.url = "github:denful/den";
 
