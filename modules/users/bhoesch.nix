@@ -23,6 +23,7 @@
       den.aspects.development.provides.docker
       den.aspects.development.provides.ai
       den.aspects.development.provides.qmk
+      den.aspects.development.provides.qmk-shell
 
       den.aspects.shell.provides.zsh
       den.aspects.shell.provides.fastfetch
@@ -41,6 +42,7 @@
         "docker"
         "plugdev"
         "dialout"
+        "wireshark"
       ];
       packages = with pkgs; [
         kdePackages.kate
