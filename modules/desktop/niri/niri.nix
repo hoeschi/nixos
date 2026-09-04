@@ -1,6 +1,7 @@
 {
   den,
   lib,
+  inputs,
   ...
 }: {
   den.aspects.gui.provides.niri = {
@@ -16,6 +17,26 @@
         # nur damit der GNOME-Portal-Filechooser funktioniert. gtk reicht.
         useNautilus = false;
       };
+
+      nixpkgs.overlays = [
+        (final: prev: {
+          # Pin auf 0.8.1 – ab 0.8.2 (commit 3273a0f) rendern Dropdown-Menüs
+          # nicht mehr korrekt. Siehe xwayland-satellite#468.
+          xwayland-satellite = prev.xwayland-satellite.overrideAttrs (old: rec {
+            version = "0.8.1";
+            src = prev.fetchFromGitHub {
+              owner = "Supreeeme";
+              repo = "xwayland-satellite";
+              rev = "v${version}";
+              hash = "sha256-BUE41HjLIGPjq3U8VXPjf8asH8GaMI7FYdgrIHKFMXA=";
+            };
+            cargoDeps = prev.rustPlatform.fetchCargoVendor {
+              inherit src;
+              hash = "sha256-16L6gsvze+m7XCJlOA1lsPNELE3D364ef2FTdkh0rVY=";
+            };
+          });
+        })
+      ];
 
       # Das niri-Modul setzt defaultSession per mkDefault auf "niri".
       # Im Parallelbetrieb soll Hyprland die Vorauswahl im SDDM bleiben.
@@ -49,6 +70,7 @@
           # niri legt die X11-Sockets selbst an und startet Satellite on-demand,
           # sobald ein X11-Client verbindet. Ohne das kein Steam, Proton, Ryujinx.
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+          #xwayland-satellite.path = lib.getExe inputs.xwayland-satellite-0_8_1.packages.${pkgs.system}.default;
 
           input = {
             keyboard = {
@@ -60,7 +82,7 @@
               accel-speed = 0.0;
             };
             #focus-follows-mouse = [];
-            warp-mouse-to-focus = [];
+            #warp-mouse-to-focus = [];
           };
 
           cursor = {
@@ -339,6 +361,7 @@
               window-rule = {
                 match._props.app-id = "^discord$";
                 open-on-workspace = "Media";
+                default-column-width = {proportion = 0.7;};
               };
             }
 
@@ -347,6 +370,7 @@
               window-rule = {
                 match._props.app-id = "^steam$";
                 open-on-workspace = "Games";
+                default-column-width = {proportion = 0.7;};
               };
             }
             {
