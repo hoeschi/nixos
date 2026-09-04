@@ -63,6 +63,9 @@
         config.allowUnfree = true;
         overlays = [
           inputs.nur.overlays.default # <-- hinzufügen
+
+
+          
         ];
       };
 
@@ -129,6 +132,8 @@
         input-remapper.enable = true;
         mullvad-vpn.enable = true;
         resolved.enable = true; # enable systemd DNS resolver
+
+        udisks2.enable = true;
       };
 
       # Enable sound with pipewire.
@@ -147,8 +152,15 @@
         #media-session.enable = true;
       };
 
-      programs.nix-ld = {
-        enable = true;
+      programs = {
+        nix-ld = {
+          enable = true;
+        };
+
+        wireshark = {
+          enable = true;
+          package = pkgs.wireshark; # GUI; Default wäre wireshark-cli
+        };
       };
 
       virtualisation.docker.enable = true; # to enable the docker deamon
@@ -158,6 +170,7 @@
         nix-output-monitor
 
         kdePackages.dolphin
+        kdePackages.ark
 
         wineWow64Packages.stable
         winetricks
