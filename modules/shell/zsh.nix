@@ -28,7 +28,8 @@
           ls = "eza --icons -l";
           v = "nvim";
           vim = "nvim";
-          rebuild-switch = "nixos-rebuild switch --flake ~/nixos --sudo";
+          #rebuild-switch = "nixos-rebuild switch --flake ~/nixos --sudo";
+          rebuild-switch = "nixos-rebuild switch --flake ~/nixos --sudo --log-format internal-json -v |& nom --json";
           rebuild-switch-upgrade = "nix flake update --flake ~/nixos && nixos-rebuild switch --flake ~/nixos --sudo";
         };
 
