@@ -57,6 +57,7 @@
         pwvucontrol # Routen und Lautstärken
         qpwgraph # Graph kontrollieren
         pulseaudio # nur pactl/pacmd, nicht der Daemon
+        faudio
       ];
     };
   };
