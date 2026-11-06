@@ -17,7 +17,8 @@
 
       environment.systemPackages = with pkgs; [
         (discord.override {
-          withOpenASAR = true;
+          # OpenASAR hangs on startup with Discord 1.0.168 (no window ever appears)
+          #withOpenASAR = true;
           withVencord = true;
         })
 
