@@ -14,6 +14,8 @@
 
       den.aspects.system.provides.sddm
       den.aspects.gui.provides.stylix
+
+      den.aspects.audio
     ];
 
     nixos = {
@@ -51,11 +53,17 @@
           auto-optimise-store = true;
         };
 
-        # Garbage collection settings
-        gc = {
-          automatic = true;
+        # Garbage collection übernimmt programs.nh.clean
+        gc.automatic = false;
+      };
+
+      # Behält immer die letzten 5 Generationen, auch wenn sie älter als 7 Tage sind
+      programs.nh = {
+        enable = true;
+        clean = {
+          enable = true;
           dates = "weekly";
-          options = "--delete-older-than 4d";
+          extraArgs = "--keep 5 --keep-since 7d";
         };
       };
 
@@ -63,9 +71,6 @@
         config.allowUnfree = true;
         overlays = [
           inputs.nur.overlays.default # <-- hinzufügen
-
-
-          
         ];
       };
 
@@ -78,7 +83,6 @@
       };
 
       environment.sessionVariables = {
-        RADV_PERFTEST = "gpl"; # AMD: Shader-Ruckler reduzieren
         PATH = ["$HOME/.local/bin"];
         PULSE_COOKIE = "$HOME/.config/pulse/cookie"; # greift nicht für Steam (eigene libpulse)
         #COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
@@ -93,15 +97,49 @@
         config.common.default = "*";
       };
 
+      # Standard-Apps nach Dateityp (MIME-Typ, nicht Dateiendung).
+      # Landet in /etc/xdg/mimeapps.list. Einträge in der User-Datei
+      # ~/.config/mimeapps.list haben Vorrang, falls dort gesetzt.
+      # MIME-Typ einer Datei prüfen: xdg-mime query filetype <datei>
+      xdg.mime.defaultApplications = {
+        # Ordner aus anderen Apps (z.B. Prism "Mods-Ordner öffnen")
+        # in Nemo statt in VS Code öffnen
+        "inode/directory" = "nemo.desktop";
+        "application/x-gnome-saved-search" = "nemo.desktop";
+
+        # Text- und Konfigurationsdateien in Kate öffnen
+        "text/plain" = "org.kde.kate.desktop"; # .txt .conf .cfg .ini (auch .ino, CMakeLists.txt)
+        "text/x-log" = "org.kde.kate.desktop"; # .log
+        "text/markdown" = "org.kde.kate.desktop"; # .md
+
+        # Programmier-Dateien in VS Code öffnen
+        "text/x-python" = "code.desktop"; # .py
+        "application/x-ipynb+json" = "code.desktop"; # .ipynb
+        "text/x-nix" = "code.desktop"; # .nix
+        "text/x-shellscript" = "code.desktop"; # .sh
+        "text/x-csrc" = "code.desktop"; # .c
+        "text/x-chdr" = "code.desktop"; # .h
+        "text/x-c++src" = "code.desktop"; # .cpp
+        "text/x-c++hdr" = "code.desktop"; # .hpp
+        "text/x-cmake" = "code.desktop"; # .cmake
+        "text/x-makefile" = "code.desktop"; # Makefile .mk
+        "text/rust" = "code.desktop"; # .rs
+        "text/x-go" = "code.desktop"; # .go
+        "text/x-java" = "code.desktop"; # .java
+        "text/x-lua" = "code.desktop"; # .lua
+        "text/javascript" = "code.desktop"; # .js
+        "text/vnd.trolltech.linguist" = "code.desktop"; # .ts (wird als Qt-Übersetzung erkannt)
+        "text/css" = "code.desktop"; # .css
+        "application/json" = "code.desktop"; # .json
+        "application/yaml" = "code.desktop"; # .yaml .yml
+        "application/toml" = "code.desktop"; # .toml
+        "application/xml" = "code.desktop"; # .xml
+      };
+
       hardware = {
         graphics = {
           enable = true;
           enable32Bit = true;
-
-          extraPackages = with pkgs; [
-            libva-vdpau-driver
-            libvdpau-va-gl
-          ];
         };
       };
 
@@ -134,23 +172,28 @@
         resolved.enable = true; # enable systemd DNS resolver
 
         udisks2.enable = true;
+
+        dbus.packages = [pkgs.kdePackages.kio];
+
+        gvfs.enable = true; # SFTP/SMB
+        gnome.gnome-keyring.enable = true; # Passwörter merken
       };
 
       # Enable sound with pipewire.
-      services.pulseaudio.enable = false;
-      security.rtkit.enable = true;
-      services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        # If you want to use JACK applications, uncomment this
-        jack.enable = true;
-
-        # use the example session manager (no others are packaged yet so this is enabled by default,
-        # no need to redefine it in your config for now)
-        #media-session.enable = true;
-      };
+      #services.pulseaudio.enable = false;
+      #security.rtkit.enable = true;
+      #services.pipewire = {
+      #  enable = true;
+      #  alsa.enable = true;
+      #  alsa.support32Bit = true;
+      #  pulse.enable = true;
+      #  # If you want to use JACK applications, uncomment this
+      #  jack.enable = true;
+      #
+      #  # use the example session manager (no others are packaged yet so this is enabled by default,
+      #  # no need to redefine it in your config for now)
+      #  #media-session.enable = true;
+      #};
 
       programs = {
         nix-ld = {
@@ -171,6 +214,10 @@
 
         kdePackages.dolphin
         kdePackages.ark
+        kdePackages.kio-extras
+        kdePackages.kded
+
+        nemo-with-extensions
 
         wineWow64Packages.stable
         winetricks
@@ -197,13 +244,11 @@
         mullvad-browser
 
         whatsapp-electron
-        onlyoffice-desktopeditors
-        zotero # citation manager
+        #onlyoffice-desktopeditors
+        #zotero # citation manager
         obsidian # note taking app
 
         piper # for mouse config
-
-        pavucontrol
 
         input-remapper
 
@@ -244,6 +289,13 @@
 
         staruml
         #gaphorixos
+
+        #alsa-utils
+        #pwvucontrol
+        #qpwgraph
+        pavucontrol
+
+        jq
       ];
 
       # This value determines the NixOS release from which the default
