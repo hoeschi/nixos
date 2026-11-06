@@ -129,7 +129,7 @@
 
                   start = ["launcher" "wallpaper" "workspaces"];
                   center = ["clock"];
-                  end = ["media" "tray" "notifications" "clipboard" "network" "bluetooth" "volume" "brightness" "battery" "control-center" "session"];
+                  end = ["media" "discord" "tray" "notifications" "clipboard" "network" "bluetooth" "volume" "brightness" "battery" "control-center" "session"];
                 };
               };
 
@@ -139,6 +139,24 @@
                   label_source = "name"; # id | name
                   max_label_chars = 6; # truncate long workspace names (e.g. "VESKTOP" → "VE")
                 };
+
+                # Eigenes Plugin, siehe plugins/discord/ (liest niri-Fenstertitel)
+                discord.type = "bhoesch/discord:unread";
+              };
+
+              # Lokale Plugins aus diesem Repo. Read-only im Store ist für
+              # path-Sources ausdrücklich vorgesehen. Der Name "local" ist für
+              # ~/.local/share/noctalia/plugins reserviert.
+              plugins = {
+                enabled = ["bhoesch/discord"];
+                source = [
+                  {
+                    name = "nixos";
+                    kind = "path";
+                    location = "${./plugins}";
+                    enabled = true;
+                  }
+                ];
               };
             };
           };

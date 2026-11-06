@@ -1,0 +1,12 @@
+id          = "bhoesch/discord"
+name        = "Discord"
+version     = "1.0.0"
+plugin_api  = 3
+author      = "bhoesch"
+icon        = "brand-discord"
+description = "Ungelesene Discord-Nachrichten aus dem niri-Fenstertitel."
+dependencies = ["niri"]
+
+[[widget]]
+id    = "unread"
+entry = "widget.luau"
