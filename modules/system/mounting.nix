@@ -33,10 +33,8 @@
         options = [
           "nfsvers=4"
           "hard"
-          "intr"
           "rsize=1048576"
           "wsize=1048576"
-          "async"
           "x-systemd.automount"
           "noauto"
           "x-systemd.idle-timeout=600"
