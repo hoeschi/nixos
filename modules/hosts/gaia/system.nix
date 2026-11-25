@@ -233,7 +233,7 @@
         p7zip
         crosspipe # Pipewire configuration with gui, maintained fork of helvum
         libstrangle
-        rustdesk # Remote Zugriff auf Laptop
+        #rustdesk # Remote Zugriff auf Laptop
 
         python315
         unrar
@@ -285,7 +285,9 @@
         age
         openssl
 
+        #Task manager
         btop
+        bottom #open with btm
 
         staruml
         #gaphorixos
