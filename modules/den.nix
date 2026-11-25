@@ -58,6 +58,8 @@
   };
 
   den.schema.host.includes = [
+    # User-Aspects (nixos-Teile) auch auf dem Host anwenden, siehe den#694
+    den.batteries.user-aspects
     {
       nixos = {
         # XDG Base Directory Specification – systemweit für alle Sessions.
