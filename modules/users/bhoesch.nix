@@ -30,6 +30,7 @@
       den.aspects.shell.provides.kitty
 
       den.aspects.gaming
+      den.aspects.media
       den.aspects.email
 
       den.aspects.browser.provides.firefox

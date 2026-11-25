@@ -24,6 +24,15 @@
 
         xivlauncher
         clonehero
+
+        # Windows-Spiele/-Programme außerhalb von Steam
+        wineWow64Packages.stable
+        winetricks
+        protontricks
+        #bottles
+
+        libstrangle # FPS-Limiter (strangle)
+        vulkan-tools # vulkaninfo, vkcube
       ];
     };
 

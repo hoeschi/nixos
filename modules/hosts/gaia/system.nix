@@ -197,10 +197,6 @@
 
         nemo-with-extensions
 
-        wineWow64Packages.stable
-        winetricks
-        protontricks
-
         kicad
         #freecad
         #bambu-studio
@@ -209,7 +205,6 @@
         wget
         curl
         p7zip
-        libstrangle
         gparted #Partition tool
         #rustdesk # Remote Zugriff auf Laptop
 
@@ -232,15 +227,6 @@
 
         samba
         cifs-utils
-        yt-dlp # xD
-        vlc
-        libbdplus
-        libbluray
-        libaacs
-        ffmpeg
-        mkvtoolnix
-        bento4 # for mp4decrypt for Crunchyroll downloads
-        #makemkv
 
         corefonts
         vista-fonts
@@ -249,9 +235,6 @@
         libgcc
         gnumake
         cmake
-
-        #bottles
-        vulkan-tools
 
         gnutls
 
