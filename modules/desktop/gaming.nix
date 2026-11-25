@@ -33,6 +33,8 @@
         steam-run
         #lutris
 
+        chiaki-ng # for Playstation remote play
+
         protonup-qt
 
         ryubing # Switch emulator
@@ -48,6 +50,7 @@
 
       programs = {
         prismlauncher.enable = true;
+        lutris.enable = true;
         mangohud = {
           enable = true;
           settings = {
