@@ -67,7 +67,6 @@
         ];
 
         sessionVariables = {
-          DOCKER_CONFIG = "${config.xdg.configHome}/docker";
           PLATFORMIO_CORE_DIR = "${config.xdg.dataHome}/platformio";
           DOTNET_CLI_HOME = "${config.xdg.dataHome}/dotnet";
           PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
