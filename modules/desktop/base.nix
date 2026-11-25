@@ -13,6 +13,10 @@
       # GTK-Apps (Nemo & Co.) lesen gtk-theme/color-scheme über GSettings.
       # Ohne dconf-Backend landen die Werte im Memory-Backend und gehen verloren.
       programs.dconf.enable = lib.mkIf (config.theming.colorSource == "wallpaper") true;
+
+      # Polkit-Agent für alle Compositors (niri, Hyprland, …). Ohne Agent
+      # schlagen pkexec-Anfragen fehl, z. B. gparted: "No authentication agent found".
+      security.soteria.enable = true;
     };
 
     homeManager = {
