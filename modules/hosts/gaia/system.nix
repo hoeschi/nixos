@@ -75,16 +75,12 @@
       };
 
       networking = {
-        firewall = {
-          trustedInterfaces = ["docker0"];
-        };
         # Enable networking
         networkmanager.enable = true;
       };
 
       environment.sessionVariables = {
         PATH = ["$HOME/.local/bin"];
-        PULSE_COOKIE = "$HOME/.config/pulse/cookie"; # greift nicht für Steam (eigene libpulse)
         #COPILOT_HOME      = "$HOME/.config/copilot";      # undokumentiert, kann per VSCode-Update wegfallen
         #CLAUDE_CONFIG_DIR = "$HOME/.config/claude";       # undokumentiert; VSCode-Ext. ignoriert sie
       };
@@ -179,22 +175,6 @@
         gnome.gnome-keyring.enable = true; # Passwörter merken
       };
 
-      # Enable sound with pipewire.
-      #services.pulseaudio.enable = false;
-      #security.rtkit.enable = true;
-      #services.pipewire = {
-      #  enable = true;
-      #  alsa.enable = true;
-      #  alsa.support32Bit = true;
-      #  pulse.enable = true;
-      #  # If you want to use JACK applications, uncomment this
-      #  jack.enable = true;
-      #
-      #  # use the example session manager (no others are packaged yet so this is enabled by default,
-      #  # no need to redefine it in your config for now)
-      #  #media-session.enable = true;
-      #};
-
       programs = {
         nix-ld = {
           enable = true;
@@ -205,8 +185,6 @@
           package = pkgs.wireshark; # GUI; Default wäre wireshark-cli
         };
       };
-
-      virtualisation.docker.enable = true; # to enable the docker deamon
 
       environment.systemPackages = with pkgs; [
         #home-manager
@@ -231,8 +209,8 @@
         wget
         curl
         p7zip
-        crosspipe # Pipewire configuration with gui, maintained fork of helvum
         libstrangle
+        gparted #Partition tool
         #rustdesk # Remote Zugriff auf Laptop
 
         python315
@@ -272,10 +250,6 @@
         gnumake
         cmake
 
-        docker
-        docker-compose
-        lazydocker
-
         #bottles
         vulkan-tools
 
@@ -291,11 +265,6 @@
 
         staruml
         #gaphorixos
-
-        #alsa-utils
-        #pwvucontrol
-        #qpwgraph
-        pavucontrol
 
         jq
       ];

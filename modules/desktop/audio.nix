@@ -12,7 +12,6 @@
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        jack.enable = true;
 
         # Switch 2 am Line-In als eigener Abspiel-Stream
         extraConfig.pipewire."91-switch2-loopback" = {
@@ -25,6 +24,8 @@
                   "node.name" = "switch2_capture";
                   "target.object" = lineIn;
                   "node.passive" = true;
+                  # Ohne Line-In (anderer PC) nicht aufs Default-Mikro ausweichen
+                  "node.dont-fallback" = true;
                   "audio.position" = ["FL" "FR"];
                 };
                 "playback.props" = {
@@ -52,10 +53,16 @@
         };
       };
 
+      environment.sessionVariables = {
+        PULSE_COOKIE = "$HOME/.config/pulse/cookie"; # greift nicht für Steam (eigene libpulse)
+      };
+
       environment.systemPackages = with pkgs; [
         alsa-utils # arecord, alsamixer
         pwvucontrol # Routen und Lautstärken
+        pavucontrol # klassischer Pulse-Mixer
         qpwgraph # Graph kontrollieren
+        crosspipe # Pipewire-Graph mit GUI, Fork von helvum
         pulseaudio # nur pactl/pacmd, nicht der Daemon
         faudio
       ];
