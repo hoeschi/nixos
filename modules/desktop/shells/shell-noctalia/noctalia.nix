@@ -115,21 +115,21 @@
                   padding = 14; # main-axis padding from bar edges to start/end widget sections
                   widget_spacing = 8; # gap between widgets within a section
                   hover_highlight = true; # softly tint the widget under the mouse pointer with its foreground color
-                  scale = 1.1; # content scale multiplier for icons and text
+                  scale = 1.2; # content scale multiplier for icons and text
                   font_weight = 500; # CSS weight 100–1000 (e.g. 400 regular, 700 bold); primary label weight for bar widgets
                   font_family = ""; # typeface for this bar's widgets; empty inherits the global font
 
                   # Default capsule style for all widgets on this bar (see Widget Capsule section)
-                  capsule = false;
+                  capsule = true;
                   capsule_fill = "surface_variant";
                   capsule_thickness = 0.76; # capsule size across the bar as a fraction of bar thickness (1.0 fills the bar)
                   capsule_radius = 8.0; # omit for automatic pill radius
-                  capsule_opacity = 1.0;
+                  capsule_opacity = 0.5;
                   # capsule_border   = "outline"   # omit this key for no border by default
 
                   start = ["launcher" "wallpaper" "workspaces"];
                   center = ["clock"];
-                  end = ["media" "discord" "tray" "notifications" "clipboard" "network" "bluetooth" "volume" "brightness" "battery" "control-center" "session"];
+                  end = ["media" "tray" "notifications" "clipboard" "network" "bluetooth" "volume" "brightness" "battery" "control-center" "session"];
                 };
               };
 
